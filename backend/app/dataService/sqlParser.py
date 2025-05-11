@@ -3,6 +3,7 @@ import sys
 import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
+nltk.download('punkt_tab')
 import pathlib
 import numpy as np
 
@@ -48,7 +49,7 @@ class SQLParser(object):
         self.db = GV.SPIDER_FOLDER
         self.db_schema, self.db_names, self.tables = process_sql.get_schemas_from_json(os.path.join(self.db, "tables.json"))
         
-    def parse_sql(self, sql="SELECT name as N,  country ,  age, FROM singer group by country having count(*) > 2", db_id="concert_singer"):
+    def parse_sql(self, sql="SELECT name, country, age FROM singer group by country having count(*) > 2", db_id="concert_singer"):
         schema = self.db_schema[db_id]
         table = self.tables[db_id]
         schema = process_sql.Schema(schema, table)
