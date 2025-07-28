@@ -74,10 +74,10 @@ def evaluate_user_session(json_filepath: str, schema_folder_name: str, schema_ba
 
 
 if __name__ == "__main__":
-    USER_JSON_DIR = "./sample-data"
+    USER_JSON_DIR = "./test_data"
     # This needs to be configured to specify the database for analysis.
     DEFAULT_SCHEMA_FOLDER = "customers_and_addresses"
-    SCHEMA_BASE_DIR = "../backend/app/data/dataset/spider/database"
+    SCHEMA_BASE_DIR = "../../data/dataset/spider/database"
     if not os.path.isdir(USER_JSON_DIR):
         print(f"Error: User JSON file directory '{USER_JSON_DIR}' does not exist. Please check the path.")
     else:
