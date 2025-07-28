@@ -1,0 +1,3022 @@
+{
+  "userid": "QRec",
+  "username": "QRec",
+  "starttime": 1753532104656,
+  "endtime": 1753532479570,
+  "systype": "recommendation mode",
+  "userdata": {
+    "origQuerySugg": {
+      "nl": [
+        "Show the start and end dates for all customer addresses.",
+        "Show the start and end dates when customer contact channels were active.",
+        "Show the quantity ordered and product details for all items in orders by matching each item to its corresponding product.",
+        "Show the address details and their types for all customer addresses.",
+        "Show me the payment methods used by all customers."
+      ],
+      "sql": [
+        "SELECT date_address_from, date_address_to FROM customer_addresses;",
+        "SELECT active_from_date, active_to_date FROM customer_contact_channels;",
+        "SELECT oi.order_quantity, p.product_details FROM order_items oi JOIN products p ON oi.product_id = p.product_id;",
+        "SELECT a.other_address_details, ca.address_type FROM addresses a JOIN customer_addresses ca ON a.address_id = ca.address_id;",
+        "SELECT payment_method FROM customers;"
+      ]
+    },
+    "suerQueryData": [
+      {
+        "SQL": {
+          "sql": "SELECT date_address_from, date_address_to FROM customer_addresses;",
+          "data": [
+            [
+              "1985-03-29 20:31:43",
+              "1993-02-17 17:55:18"
+            ],
+            [
+              "2010-08-25 04:24:35",
+              "1972-02-17 22:23:38"
+            ],
+            [
+              "2010-12-26 08:52:50",
+              "1979-07-16 18:22:39"
+            ],
+            [
+              "1995-12-16 07:21:04",
+              "1990-06-29 13:39:18"
+            ],
+            [
+              "1972-12-08 17:12:08",
+              "2010-11-10 11:35:28"
+            ],
+            [
+              "1979-01-26 17:55:38",
+              "1977-07-07 08:38:29"
+            ],
+            [
+              "1990-11-25 12:40:25",
+              "1974-03-28 18:09:39"
+            ],
+            [
+              "1986-09-12 22:07:06",
+              "2003-11-08 12:14:09"
+            ],
+            [
+              "2003-07-08 05:33:19",
+              "2010-05-08 10:00:17"
+            ],
+            [
+              "2010-02-25 11:15:16",
+              "1977-05-17 23:47:09"
+            ],
+            [
+              "2013-01-29 23:14:00",
+              "2008-04-30 00:20:58"
+            ],
+            [
+              "2005-06-22 09:38:54",
+              "1970-02-22 03:46:01"
+            ],
+            [
+              "2016-11-24 11:00:17",
+              "1970-09-18 09:07:32"
+            ],
+            [
+              "1980-04-11 23:46:50",
+              "1977-12-07 13:55:11"
+            ],
+            [
+              "1979-01-11 13:53:30",
+              "1971-11-17 18:29:57"
+            ]
+          ],
+          "nl": "Show the start and end dates for all customer addresses.",
+          "SQLTrans": {
+            "text": "Show the start and end dates for all customer addresses."
+          },
+          "VLSpecs": [
+            {
+              "content": [
+                {
+                  "date_address_from": "1985-03-29 20:31:43",
+                  "date_address_to": "1993-02-17 17:55:18"
+                },
+                {
+                  "date_address_from": "2010-08-25 04:24:35",
+                  "date_address_to": "1972-02-17 22:23:38"
+                },
+                {
+                  "date_address_from": "2010-12-26 08:52:50",
+                  "date_address_to": "1979-07-16 18:22:39"
+                },
+                {
+                  "date_address_from": "1995-12-16 07:21:04",
+                  "date_address_to": "1990-06-29 13:39:18"
+                },
+                {
+                  "date_address_from": "1972-12-08 17:12:08",
+                  "date_address_to": "2010-11-10 11:35:28"
+                },
+                {
+                  "date_address_from": "1979-01-26 17:55:38",
+                  "date_address_to": "1977-07-07 08:38:29"
+                },
+                {
+                  "date_address_from": "1990-11-25 12:40:25",
+                  "date_address_to": "1974-03-28 18:09:39"
+                },
+                {
+                  "date_address_from": "1986-09-12 22:07:06",
+                  "date_address_to": "2003-11-08 12:14:09"
+                },
+                {
+                  "date_address_from": "2003-07-08 05:33:19",
+                  "date_address_to": "2010-05-08 10:00:17"
+                },
+                {
+                  "date_address_from": "2010-02-25 11:15:16",
+                  "date_address_to": "1977-05-17 23:47:09"
+                },
+                {
+                  "date_address_from": "2013-01-29 23:14:00",
+                  "date_address_to": "2008-04-30 00:20:58"
+                },
+                {
+                  "date_address_from": "2005-06-22 09:38:54",
+                  "date_address_to": "1970-02-22 03:46:01"
+                },
+                {
+                  "date_address_from": "2016-11-24 11:00:17",
+                  "date_address_to": "1970-09-18 09:07:32"
+                },
+                {
+                  "date_address_from": "1980-04-11 23:46:50",
+                  "date_address_to": "1977-12-07 13:55:11"
+                },
+                {
+                  "date_address_from": "1979-01-11 13:53:30",
+                  "date_address_to": "1971-11-17 18:29:57"
+                }
+              ],
+              "data": [
+                {
+                  "date_address_from": "1985-03-29 20:31:43",
+                  "date_address_to": "1993-02-17 17:55:18"
+                },
+                {
+                  "date_address_from": "2010-08-25 04:24:35",
+                  "date_address_to": "1972-02-17 22:23:38"
+                },
+                {
+                  "date_address_from": "2010-12-26 08:52:50",
+                  "date_address_to": "1979-07-16 18:22:39"
+                },
+                {
+                  "date_address_from": "1995-12-16 07:21:04",
+                  "date_address_to": "1990-06-29 13:39:18"
+                },
+                {
+                  "date_address_from": "1972-12-08 17:12:08",
+                  "date_address_to": "2010-11-10 11:35:28"
+                },
+                {
+                  "date_address_from": "1979-01-26 17:55:38",
+                  "date_address_to": "1977-07-07 08:38:29"
+                },
+                {
+                  "date_address_from": "1990-11-25 12:40:25",
+                  "date_address_to": "1974-03-28 18:09:39"
+                },
+                {
+                  "date_address_from": "1986-09-12 22:07:06",
+                  "date_address_to": "2003-11-08 12:14:09"
+                },
+                {
+                  "date_address_from": "2003-07-08 05:33:19",
+                  "date_address_to": "2010-05-08 10:00:17"
+                },
+                {
+                  "date_address_from": "2010-02-25 11:15:16",
+                  "date_address_to": "1977-05-17 23:47:09"
+                },
+                {
+                  "date_address_from": "2013-01-29 23:14:00",
+                  "date_address_to": "2008-04-30 00:20:58"
+                },
+                {
+                  "date_address_from": "2005-06-22 09:38:54",
+                  "date_address_to": "1970-02-22 03:46:01"
+                },
+                {
+                  "date_address_from": "2016-11-24 11:00:17",
+                  "date_address_to": "1970-09-18 09:07:32"
+                },
+                {
+                  "date_address_from": "1980-04-11 23:46:50",
+                  "date_address_to": "1977-12-07 13:55:11"
+                },
+                {
+                  "date_address_from": "1979-01-11 13:53:30",
+                  "date_address_to": "1971-11-17 18:29:57"
+                }
+              ],
+              "type": "table"
+            }
+          ]
+        },
+        "key": "Show the start and end dates for all customer addresses.",
+        "SQLTrans": {
+          "text": "Show the start and end dates for all customer addresses."
+        },
+        "type": "table",
+        "VLSpecs": {
+          "content": [
+            {
+              "date_address_from": "1985-03-29 20:31:43",
+              "date_address_to": "1993-02-17 17:55:18"
+            },
+            {
+              "date_address_from": "2010-08-25 04:24:35",
+              "date_address_to": "1972-02-17 22:23:38"
+            },
+            {
+              "date_address_from": "2010-12-26 08:52:50",
+              "date_address_to": "1979-07-16 18:22:39"
+            },
+            {
+              "date_address_from": "1995-12-16 07:21:04",
+              "date_address_to": "1990-06-29 13:39:18"
+            },
+            {
+              "date_address_from": "1972-12-08 17:12:08",
+              "date_address_to": "2010-11-10 11:35:28"
+            },
+            {
+              "date_address_from": "1979-01-26 17:55:38",
+              "date_address_to": "1977-07-07 08:38:29"
+            },
+            {
+              "date_address_from": "1990-11-25 12:40:25",
+              "date_address_to": "1974-03-28 18:09:39"
+            },
+            {
+              "date_address_from": "1986-09-12 22:07:06",
+              "date_address_to": "2003-11-08 12:14:09"
+            },
+            {
+              "date_address_from": "2003-07-08 05:33:19",
+              "date_address_to": "2010-05-08 10:00:17"
+            },
+            {
+              "date_address_from": "2010-02-25 11:15:16",
+              "date_address_to": "1977-05-17 23:47:09"
+            },
+            {
+              "date_address_from": "2013-01-29 23:14:00",
+              "date_address_to": "2008-04-30 00:20:58"
+            },
+            {
+              "date_address_from": "2005-06-22 09:38:54",
+              "date_address_to": "1970-02-22 03:46:01"
+            },
+            {
+              "date_address_from": "2016-11-24 11:00:17",
+              "date_address_to": "1970-09-18 09:07:32"
+            },
+            {
+              "date_address_from": "1980-04-11 23:46:50",
+              "date_address_to": "1977-12-07 13:55:11"
+            },
+            {
+              "date_address_from": "1979-01-11 13:53:30",
+              "date_address_to": "1971-11-17 18:29:57"
+            }
+          ],
+          "data": [
+            {
+              "date_address_from": "1985-03-29 20:31:43",
+              "date_address_to": "1993-02-17 17:55:18"
+            },
+            {
+              "date_address_from": "2010-08-25 04:24:35",
+              "date_address_to": "1972-02-17 22:23:38"
+            },
+            {
+              "date_address_from": "2010-12-26 08:52:50",
+              "date_address_to": "1979-07-16 18:22:39"
+            },
+            {
+              "date_address_from": "1995-12-16 07:21:04",
+              "date_address_to": "1990-06-29 13:39:18"
+            },
+            {
+              "date_address_from": "1972-12-08 17:12:08",
+              "date_address_to": "2010-11-10 11:35:28"
+            },
+            {
+              "date_address_from": "1979-01-26 17:55:38",
+              "date_address_to": "1977-07-07 08:38:29"
+            },
+            {
+              "date_address_from": "1990-11-25 12:40:25",
+              "date_address_to": "1974-03-28 18:09:39"
+            },
+            {
+              "date_address_from": "1986-09-12 22:07:06",
+              "date_address_to": "2003-11-08 12:14:09"
+            },
+            {
+              "date_address_from": "2003-07-08 05:33:19",
+              "date_address_to": "2010-05-08 10:00:17"
+            },
+            {
+              "date_address_from": "2010-02-25 11:15:16",
+              "date_address_to": "1977-05-17 23:47:09"
+            },
+            {
+              "date_address_from": "2013-01-29 23:14:00",
+              "date_address_to": "2008-04-30 00:20:58"
+            },
+            {
+              "date_address_from": "2005-06-22 09:38:54",
+              "date_address_to": "1970-02-22 03:46:01"
+            },
+            {
+              "date_address_from": "2016-11-24 11:00:17",
+              "date_address_to": "1970-09-18 09:07:32"
+            },
+            {
+              "date_address_from": "1980-04-11 23:46:50",
+              "date_address_to": "1977-12-07 13:55:11"
+            },
+            {
+              "date_address_from": "1979-01-11 13:53:30",
+              "date_address_to": "1971-11-17 18:29:57"
+            }
+          ],
+          "type": "table",
+          "title": "Show the start and end dates for all customer addresses.",
+          "sqlQuery": "SELECT date_address_from, date_address_to FROM customer_addresses;",
+          "nlQuery": "Show the start and end dates for all customer addresses.",
+          "nlExplanation": "Show the start and end dates for all customer addresses."
+        },
+        "QuerySugg": {
+          "nl": [
+            "Show the start and end dates when customer contact methods were active.",
+            "Show the dates when orders were placed by customers.",
+            "Show the address details and their types for all customer addresses.",
+            "Show me the address details and their types for all customer addresses.",
+            "Show the dates when each customer first became a customer."
+          ],
+          "sql": [
+            "SELECT active_from_date, active_to_date FROM customer_contact_channels;",
+            "SELECT order_date FROM customer_orders;",
+            "SELECT a.other_address_details, ca.address_type FROM addresses a JOIN customer_addresses ca ON a.address_id = ca.address_id;",
+            "SELECT a.address_content, ca.address_type FROM addresses a JOIN customer_addresses ca ON a.address_id = ca.address_id;",
+            "SELECT date_became_customer FROM customers;"
+          ]
+        }
+      },
+      {
+        "SQL": {
+          "sql": "SELECT co.order_date, c.customer_name FROM customer_orders co JOIN customers c ON co.customer_id = c.customer_id;",
+          "data": [
+            [
+              "2018-03-21 11:20:46",
+              "Prof. Ibrahim Bashirian"
+            ],
+            [
+              "2018-03-05 06:35:33",
+              "Rodrick Heaney"
+            ],
+            [
+              "2018-03-04 07:16:22",
+              "Prof. Reyes Berge II"
+            ],
+            [
+              "2018-02-28 15:46:06",
+              "Clifford Pagac"
+            ],
+            [
+              "2018-03-08 15:30:24",
+              "Clifford Pagac"
+            ],
+            [
+              "2018-03-10 06:12:51",
+              "Prof. Reyes Berge II"
+            ],
+            [
+              "2018-03-23 04:39:50",
+              "Kitty Padberg III"
+            ],
+            [
+              "2018-03-17 02:51:37",
+              "Rodrick Heaney"
+            ],
+            [
+              "2018-03-23 06:25:41",
+              "Eunice Morar"
+            ],
+            [
+              "2018-03-17 07:13:53",
+              "Clifford Pagac"
+            ],
+            [
+              "2018-03-19 18:05:50",
+              "Eunice Morar"
+            ],
+            [
+              "2018-03-16 03:16:57",
+              "Kitty Padberg III"
+            ],
+            [
+              "2018-03-22 14:57:30",
+              "Prof. Alexzander Hamill"
+            ],
+            [
+              "2018-02-24 13:18:49",
+              "Salvatore Tillman"
+            ],
+            [
+              "2018-03-06 12:31:35",
+              "Kitty Padberg III"
+            ]
+          ],
+          "nl": "Show the dates when orders were placed by customers.",
+          "SQLTrans": {
+            "text": "Show the order dates and customer names for all orders by matching each order to its customer."
+          },
+          "VLSpecs": [
+            {
+              "content": [
+                {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                  "data": {
+                    "values": [
+                      {
+                        "customer_name": "Prof. Ibrahim Bashirian",
+                        "order_date": "2018-03-21 11:20:46"
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "order_date": "2018-03-05 06:35:33"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "order_date": "2018-03-04 07:16:22"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-02-28 15:46:06"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-03-08 15:30:24"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "order_date": "2018-03-10 06:12:51"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-23 04:39:50"
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "order_date": "2018-03-17 02:51:37"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "order_date": "2018-03-23 06:25:41"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-03-17 07:13:53"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "order_date": "2018-03-19 18:05:50"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-16 03:16:57"
+                      },
+                      {
+                        "customer_name": "Prof. Alexzander Hamill",
+                        "order_date": "2018-03-22 14:57:30"
+                      },
+                      {
+                        "customer_name": "Salvatore Tillman",
+                        "order_date": "2018-02-24 13:18:49"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-06 12:31:35"
+                      }
+                    ]
+                  },
+                  "encoding": {
+                    "color": {
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "x": {
+                      "field": "order_date",
+                      "type": "temporal"
+                    },
+                    "y": {
+                      "aggregate": "count",
+                      "field": "order_date",
+                      "type": "temporal"
+                    }
+                  },
+                  "mark": {
+                    "type": "line"
+                  },
+                  "transform": []
+                },
+                {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                  "data": {
+                    "values": [
+                      {
+                        "customer_name": "Prof. Ibrahim Bashirian",
+                        "order_date": "2018-03-21 11:20:46"
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "order_date": "2018-03-05 06:35:33"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "order_date": "2018-03-04 07:16:22"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-02-28 15:46:06"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-03-08 15:30:24"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "order_date": "2018-03-10 06:12:51"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-23 04:39:50"
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "order_date": "2018-03-17 02:51:37"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "order_date": "2018-03-23 06:25:41"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-03-17 07:13:53"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "order_date": "2018-03-19 18:05:50"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-16 03:16:57"
+                      },
+                      {
+                        "customer_name": "Prof. Alexzander Hamill",
+                        "order_date": "2018-03-22 14:57:30"
+                      },
+                      {
+                        "customer_name": "Salvatore Tillman",
+                        "order_date": "2018-02-24 13:18:49"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-06 12:31:35"
+                      }
+                    ]
+                  },
+                  "encoding": {
+                    "color": {
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "column": {
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "x": {
+                      "field": "order_date",
+                      "type": "temporal"
+                    },
+                    "y": {
+                      "aggregate": "count",
+                      "field": "order_date",
+                      "type": "temporal"
+                    }
+                  },
+                  "mark": {
+                    "type": "line"
+                  },
+                  "transform": []
+                },
+                {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                  "data": {
+                    "values": [
+                      {
+                        "customer_name": "Prof. Ibrahim Bashirian",
+                        "order_date": "2018-03-21 11:20:46"
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "order_date": "2018-03-05 06:35:33"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "order_date": "2018-03-04 07:16:22"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-02-28 15:46:06"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-03-08 15:30:24"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "order_date": "2018-03-10 06:12:51"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-23 04:39:50"
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "order_date": "2018-03-17 02:51:37"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "order_date": "2018-03-23 06:25:41"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-03-17 07:13:53"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "order_date": "2018-03-19 18:05:50"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-16 03:16:57"
+                      },
+                      {
+                        "customer_name": "Prof. Alexzander Hamill",
+                        "order_date": "2018-03-22 14:57:30"
+                      },
+                      {
+                        "customer_name": "Salvatore Tillman",
+                        "order_date": "2018-02-24 13:18:49"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-06 12:31:35"
+                      }
+                    ]
+                  },
+                  "encoding": {
+                    "color": {
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "x": {
+                      "field": "order_date",
+                      "type": "temporal"
+                    },
+                    "y": {
+                      "aggregate": "count",
+                      "field": "order_date",
+                      "type": "temporal"
+                    }
+                  },
+                  "mark": {
+                    "type": "area"
+                  },
+                  "transform": []
+                },
+                {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                  "data": {
+                    "values": [
+                      {
+                        "customer_name": "Prof. Ibrahim Bashirian",
+                        "order_date": "2018-03-21 11:20:46"
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "order_date": "2018-03-05 06:35:33"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "order_date": "2018-03-04 07:16:22"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-02-28 15:46:06"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-03-08 15:30:24"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "order_date": "2018-03-10 06:12:51"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-23 04:39:50"
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "order_date": "2018-03-17 02:51:37"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "order_date": "2018-03-23 06:25:41"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-03-17 07:13:53"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "order_date": "2018-03-19 18:05:50"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-16 03:16:57"
+                      },
+                      {
+                        "customer_name": "Prof. Alexzander Hamill",
+                        "order_date": "2018-03-22 14:57:30"
+                      },
+                      {
+                        "customer_name": "Salvatore Tillman",
+                        "order_date": "2018-02-24 13:18:49"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-06 12:31:35"
+                      }
+                    ]
+                  },
+                  "encoding": {
+                    "color": {
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "column": {
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "x": {
+                      "field": "order_date",
+                      "type": "temporal"
+                    },
+                    "y": {
+                      "aggregate": "count",
+                      "field": "order_date",
+                      "type": "temporal"
+                    }
+                  },
+                  "mark": {
+                    "type": "area"
+                  },
+                  "transform": []
+                },
+                {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                  "data": {
+                    "values": [
+                      {
+                        "customer_name": "Prof. Ibrahim Bashirian",
+                        "order_date": "2018-03-21 11:20:46"
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "order_date": "2018-03-05 06:35:33"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "order_date": "2018-03-04 07:16:22"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-02-28 15:46:06"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-03-08 15:30:24"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "order_date": "2018-03-10 06:12:51"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-23 04:39:50"
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "order_date": "2018-03-17 02:51:37"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "order_date": "2018-03-23 06:25:41"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-03-17 07:13:53"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "order_date": "2018-03-19 18:05:50"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-16 03:16:57"
+                      },
+                      {
+                        "customer_name": "Prof. Alexzander Hamill",
+                        "order_date": "2018-03-22 14:57:30"
+                      },
+                      {
+                        "customer_name": "Salvatore Tillman",
+                        "order_date": "2018-02-24 13:18:49"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-06 12:31:35"
+                      }
+                    ]
+                  },
+                  "encoding": {
+                    "color": {
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "x": {
+                      "field": "order_date",
+                      "type": "temporal"
+                    },
+                    "y": {
+                      "aggregate": "count",
+                      "field": "order_date",
+                      "type": "temporal"
+                    }
+                  },
+                  "mark": {
+                    "type": "tick"
+                  },
+                  "transform": []
+                },
+                {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                  "data": {
+                    "values": [
+                      {
+                        "customer_name": "Prof. Ibrahim Bashirian",
+                        "order_date": "2018-03-21 11:20:46"
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "order_date": "2018-03-05 06:35:33"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "order_date": "2018-03-04 07:16:22"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-02-28 15:46:06"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-03-08 15:30:24"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "order_date": "2018-03-10 06:12:51"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-23 04:39:50"
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "order_date": "2018-03-17 02:51:37"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "order_date": "2018-03-23 06:25:41"
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "order_date": "2018-03-17 07:13:53"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "order_date": "2018-03-19 18:05:50"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-16 03:16:57"
+                      },
+                      {
+                        "customer_name": "Prof. Alexzander Hamill",
+                        "order_date": "2018-03-22 14:57:30"
+                      },
+                      {
+                        "customer_name": "Salvatore Tillman",
+                        "order_date": "2018-02-24 13:18:49"
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "order_date": "2018-03-06 12:31:35"
+                      }
+                    ]
+                  },
+                  "encoding": {
+                    "color": {
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "column": {
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "x": {
+                      "field": "order_date",
+                      "type": "temporal"
+                    },
+                    "y": {
+                      "aggregate": "count",
+                      "field": "order_date",
+                      "type": "temporal"
+                    }
+                  },
+                  "mark": {
+                    "type": "tick"
+                  },
+                  "transform": []
+                }
+              ],
+              "data": [
+                {
+                  "customer_name": "Prof. Ibrahim Bashirian",
+                  "order_date": "2018-03-21 11:20:46"
+                },
+                {
+                  "customer_name": "Rodrick Heaney",
+                  "order_date": "2018-03-05 06:35:33"
+                },
+                {
+                  "customer_name": "Prof. Reyes Berge II",
+                  "order_date": "2018-03-04 07:16:22"
+                },
+                {
+                  "customer_name": "Clifford Pagac",
+                  "order_date": "2018-02-28 15:46:06"
+                },
+                {
+                  "customer_name": "Clifford Pagac",
+                  "order_date": "2018-03-08 15:30:24"
+                },
+                {
+                  "customer_name": "Prof. Reyes Berge II",
+                  "order_date": "2018-03-10 06:12:51"
+                },
+                {
+                  "customer_name": "Kitty Padberg III",
+                  "order_date": "2018-03-23 04:39:50"
+                },
+                {
+                  "customer_name": "Rodrick Heaney",
+                  "order_date": "2018-03-17 02:51:37"
+                },
+                {
+                  "customer_name": "Eunice Morar",
+                  "order_date": "2018-03-23 06:25:41"
+                },
+                {
+                  "customer_name": "Clifford Pagac",
+                  "order_date": "2018-03-17 07:13:53"
+                },
+                {
+                  "customer_name": "Eunice Morar",
+                  "order_date": "2018-03-19 18:05:50"
+                },
+                {
+                  "customer_name": "Kitty Padberg III",
+                  "order_date": "2018-03-16 03:16:57"
+                },
+                {
+                  "customer_name": "Prof. Alexzander Hamill",
+                  "order_date": "2018-03-22 14:57:30"
+                },
+                {
+                  "customer_name": "Salvatore Tillman",
+                  "order_date": "2018-02-24 13:18:49"
+                },
+                {
+                  "customer_name": "Kitty Padberg III",
+                  "order_date": "2018-03-06 12:31:35"
+                }
+              ],
+              "type": "vega-lite"
+            }
+          ]
+        },
+        "key": "Show the dates when orders were placed by customers.",
+        "SQLTrans": {
+          "text": "Show the order dates and customer names for all orders by matching each order to its customer."
+        },
+        "type": "vega-lite",
+        "VLSpecs": {
+          "content": [
+            {
+              "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+              "data": {
+                "values": [
+                  {
+                    "customer_name": "Prof. Ibrahim Bashirian",
+                    "order_date": "2018-03-21 11:20:46"
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "order_date": "2018-03-05 06:35:33"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "order_date": "2018-03-04 07:16:22"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-02-28 15:46:06"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-03-08 15:30:24"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "order_date": "2018-03-10 06:12:51"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-23 04:39:50"
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "order_date": "2018-03-17 02:51:37"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "order_date": "2018-03-23 06:25:41"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-03-17 07:13:53"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "order_date": "2018-03-19 18:05:50"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-16 03:16:57"
+                  },
+                  {
+                    "customer_name": "Prof. Alexzander Hamill",
+                    "order_date": "2018-03-22 14:57:30"
+                  },
+                  {
+                    "customer_name": "Salvatore Tillman",
+                    "order_date": "2018-02-24 13:18:49"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-06 12:31:35"
+                  }
+                ]
+              },
+              "encoding": {
+                "color": {
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "x": {
+                  "field": "order_date",
+                  "type": "temporal"
+                },
+                "y": {
+                  "aggregate": "count",
+                  "field": "order_date",
+                  "type": "temporal"
+                }
+              },
+              "mark": {
+                "type": "line"
+              },
+              "transform": []
+            },
+            {
+              "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+              "data": {
+                "values": [
+                  {
+                    "customer_name": "Prof. Ibrahim Bashirian",
+                    "order_date": "2018-03-21 11:20:46"
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "order_date": "2018-03-05 06:35:33"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "order_date": "2018-03-04 07:16:22"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-02-28 15:46:06"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-03-08 15:30:24"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "order_date": "2018-03-10 06:12:51"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-23 04:39:50"
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "order_date": "2018-03-17 02:51:37"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "order_date": "2018-03-23 06:25:41"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-03-17 07:13:53"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "order_date": "2018-03-19 18:05:50"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-16 03:16:57"
+                  },
+                  {
+                    "customer_name": "Prof. Alexzander Hamill",
+                    "order_date": "2018-03-22 14:57:30"
+                  },
+                  {
+                    "customer_name": "Salvatore Tillman",
+                    "order_date": "2018-02-24 13:18:49"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-06 12:31:35"
+                  }
+                ]
+              },
+              "encoding": {
+                "color": {
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "column": {
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "x": {
+                  "field": "order_date",
+                  "type": "temporal"
+                },
+                "y": {
+                  "aggregate": "count",
+                  "field": "order_date",
+                  "type": "temporal"
+                }
+              },
+              "mark": {
+                "type": "line"
+              },
+              "transform": []
+            },
+            {
+              "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+              "data": {
+                "values": [
+                  {
+                    "customer_name": "Prof. Ibrahim Bashirian",
+                    "order_date": "2018-03-21 11:20:46"
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "order_date": "2018-03-05 06:35:33"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "order_date": "2018-03-04 07:16:22"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-02-28 15:46:06"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-03-08 15:30:24"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "order_date": "2018-03-10 06:12:51"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-23 04:39:50"
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "order_date": "2018-03-17 02:51:37"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "order_date": "2018-03-23 06:25:41"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-03-17 07:13:53"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "order_date": "2018-03-19 18:05:50"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-16 03:16:57"
+                  },
+                  {
+                    "customer_name": "Prof. Alexzander Hamill",
+                    "order_date": "2018-03-22 14:57:30"
+                  },
+                  {
+                    "customer_name": "Salvatore Tillman",
+                    "order_date": "2018-02-24 13:18:49"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-06 12:31:35"
+                  }
+                ]
+              },
+              "encoding": {
+                "color": {
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "x": {
+                  "field": "order_date",
+                  "type": "temporal"
+                },
+                "y": {
+                  "aggregate": "count",
+                  "field": "order_date",
+                  "type": "temporal"
+                }
+              },
+              "mark": {
+                "type": "area"
+              },
+              "transform": []
+            },
+            {
+              "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+              "data": {
+                "values": [
+                  {
+                    "customer_name": "Prof. Ibrahim Bashirian",
+                    "order_date": "2018-03-21 11:20:46"
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "order_date": "2018-03-05 06:35:33"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "order_date": "2018-03-04 07:16:22"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-02-28 15:46:06"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-03-08 15:30:24"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "order_date": "2018-03-10 06:12:51"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-23 04:39:50"
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "order_date": "2018-03-17 02:51:37"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "order_date": "2018-03-23 06:25:41"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-03-17 07:13:53"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "order_date": "2018-03-19 18:05:50"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-16 03:16:57"
+                  },
+                  {
+                    "customer_name": "Prof. Alexzander Hamill",
+                    "order_date": "2018-03-22 14:57:30"
+                  },
+                  {
+                    "customer_name": "Salvatore Tillman",
+                    "order_date": "2018-02-24 13:18:49"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-06 12:31:35"
+                  }
+                ]
+              },
+              "encoding": {
+                "color": {
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "column": {
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "x": {
+                  "field": "order_date",
+                  "type": "temporal"
+                },
+                "y": {
+                  "aggregate": "count",
+                  "field": "order_date",
+                  "type": "temporal"
+                }
+              },
+              "mark": {
+                "type": "area"
+              },
+              "transform": []
+            },
+            {
+              "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+              "data": {
+                "values": [
+                  {
+                    "customer_name": "Prof. Ibrahim Bashirian",
+                    "order_date": "2018-03-21 11:20:46"
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "order_date": "2018-03-05 06:35:33"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "order_date": "2018-03-04 07:16:22"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-02-28 15:46:06"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-03-08 15:30:24"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "order_date": "2018-03-10 06:12:51"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-23 04:39:50"
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "order_date": "2018-03-17 02:51:37"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "order_date": "2018-03-23 06:25:41"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-03-17 07:13:53"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "order_date": "2018-03-19 18:05:50"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-16 03:16:57"
+                  },
+                  {
+                    "customer_name": "Prof. Alexzander Hamill",
+                    "order_date": "2018-03-22 14:57:30"
+                  },
+                  {
+                    "customer_name": "Salvatore Tillman",
+                    "order_date": "2018-02-24 13:18:49"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-06 12:31:35"
+                  }
+                ]
+              },
+              "encoding": {
+                "color": {
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "x": {
+                  "field": "order_date",
+                  "type": "temporal"
+                },
+                "y": {
+                  "aggregate": "count",
+                  "field": "order_date",
+                  "type": "temporal"
+                }
+              },
+              "mark": {
+                "type": "tick"
+              },
+              "transform": []
+            },
+            {
+              "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+              "data": {
+                "values": [
+                  {
+                    "customer_name": "Prof. Ibrahim Bashirian",
+                    "order_date": "2018-03-21 11:20:46"
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "order_date": "2018-03-05 06:35:33"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "order_date": "2018-03-04 07:16:22"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-02-28 15:46:06"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-03-08 15:30:24"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "order_date": "2018-03-10 06:12:51"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-23 04:39:50"
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "order_date": "2018-03-17 02:51:37"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "order_date": "2018-03-23 06:25:41"
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "order_date": "2018-03-17 07:13:53"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "order_date": "2018-03-19 18:05:50"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-16 03:16:57"
+                  },
+                  {
+                    "customer_name": "Prof. Alexzander Hamill",
+                    "order_date": "2018-03-22 14:57:30"
+                  },
+                  {
+                    "customer_name": "Salvatore Tillman",
+                    "order_date": "2018-02-24 13:18:49"
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "order_date": "2018-03-06 12:31:35"
+                  }
+                ]
+              },
+              "encoding": {
+                "color": {
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "column": {
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "x": {
+                  "field": "order_date",
+                  "type": "temporal"
+                },
+                "y": {
+                  "aggregate": "count",
+                  "field": "order_date",
+                  "type": "temporal"
+                }
+              },
+              "mark": {
+                "type": "tick"
+              },
+              "transform": []
+            }
+          ],
+          "data": [
+            {
+              "customer_name": "Prof. Ibrahim Bashirian",
+              "order_date": "2018-03-21 11:20:46"
+            },
+            {
+              "customer_name": "Rodrick Heaney",
+              "order_date": "2018-03-05 06:35:33"
+            },
+            {
+              "customer_name": "Prof. Reyes Berge II",
+              "order_date": "2018-03-04 07:16:22"
+            },
+            {
+              "customer_name": "Clifford Pagac",
+              "order_date": "2018-02-28 15:46:06"
+            },
+            {
+              "customer_name": "Clifford Pagac",
+              "order_date": "2018-03-08 15:30:24"
+            },
+            {
+              "customer_name": "Prof. Reyes Berge II",
+              "order_date": "2018-03-10 06:12:51"
+            },
+            {
+              "customer_name": "Kitty Padberg III",
+              "order_date": "2018-03-23 04:39:50"
+            },
+            {
+              "customer_name": "Rodrick Heaney",
+              "order_date": "2018-03-17 02:51:37"
+            },
+            {
+              "customer_name": "Eunice Morar",
+              "order_date": "2018-03-23 06:25:41"
+            },
+            {
+              "customer_name": "Clifford Pagac",
+              "order_date": "2018-03-17 07:13:53"
+            },
+            {
+              "customer_name": "Eunice Morar",
+              "order_date": "2018-03-19 18:05:50"
+            },
+            {
+              "customer_name": "Kitty Padberg III",
+              "order_date": "2018-03-16 03:16:57"
+            },
+            {
+              "customer_name": "Prof. Alexzander Hamill",
+              "order_date": "2018-03-22 14:57:30"
+            },
+            {
+              "customer_name": "Salvatore Tillman",
+              "order_date": "2018-02-24 13:18:49"
+            },
+            {
+              "customer_name": "Kitty Padberg III",
+              "order_date": "2018-03-06 12:31:35"
+            }
+          ],
+          "type": "vega-lite",
+          "title": "Show the dates when orders were placed by customers.",
+          "sqlQuery": "SELECT co.order_date, c.customer_name FROM customer_orders co JOIN customers c ON co.customer_id = c.customer_id;",
+          "nlQuery": "Show the dates when orders were placed by customers.",
+          "nlExplanation": "Show the order dates and customer names for all orders by matching each order to its customer."
+        },
+        "QuerySugg": {
+          "nl": [
+            "Count the number of orders in the customer orders table.",
+            "Show the dates when each customer first became a customer.",
+            "Show the start and end dates when customer contact methods were active.",
+            "Show me the names and other details of all customers.",
+            "Show me the channel codes and contact numbers from all customer contact channels.",
+            "Show me the order ID, customer ID, status, date, and details for all customer orders."
+          ],
+          "sql": [
+            "SELECT count(order_date) FROM customer_orders;",
+            "SELECT date_became_customer FROM customers;",
+            "SELECT active_from_date, active_to_date FROM customer_contact_channels;",
+            "SELECT customer_name, other_customer_details FROM customers;",
+            "SELECT channel_code, contact_number FROM customer_contact_channels;",
+            "SELECT order_id, customer_id, order_status, order_date, order_details FROM customer_orders;"
+          ]
+        }
+      },
+      {
+        "SQL": {
+          "sql": "SELECT count(*) FROM customer_orders;",
+          "data": [
+            [
+              15
+            ]
+          ],
+          "nl": "Count the number of orders in the customer orders table.",
+          "SQLTrans": {
+            "text": "Count the total number of customer orders."
+          },
+          "VLSpecs": [
+            {
+              "content": 15,
+              "data": [
+                {
+                  "count(*)": 15
+                }
+              ],
+              "type": "data"
+            }
+          ]
+        },
+        "key": "Count the number of orders in the customer orders table.",
+        "SQLTrans": {
+          "text": "Count the total number of customer orders."
+        },
+        "type": "data",
+        "VLSpecs": {
+          "content": 15,
+          "data": [
+            {
+              "count(*)": 15
+            }
+          ],
+          "type": "data",
+          "title": "Count the number of orders in the customer orders table.",
+          "sqlQuery": "SELECT count(*) FROM customer_orders;",
+          "nlQuery": "Count the number of orders in the customer orders table.",
+          "nlExplanation": "Count the total number of customer orders."
+        },
+        "QuerySugg": {
+          "nl": [
+            "Show the dates when each customer first became a customer.",
+            "Show the start and end dates when customer contact methods were active.",
+            "Show me the names and details of all customers.",
+            "Show me the channel codes and contact numbers from all customer contact channels.",
+            "Show the order ID, customer ID, status, date, and details for all customer orders."
+          ],
+          "sql": [
+            "SELECT date_became_customer FROM customers;",
+            "SELECT active_from_date, active_to_date FROM customer_contact_channels;",
+            "SELECT customer_name, other_customer_details FROM customers;",
+            "SELECT channel_code, contact_number FROM customer_contact_channels;",
+            "SELECT order_id, customer_id, order_status, order_date, order_details FROM customer_orders;"
+          ]
+        }
+      },
+      {
+        "SQL": {
+          "sql": "SELECT customer_name, other_customer_details FROM customers;",
+          "data": [
+            [
+              "Dr. Julia Wuckert MD",
+              null
+            ],
+            [
+              "Tillman Ernser",
+              null
+            ],
+            [
+              "Rodrick Heaney",
+              null
+            ],
+            [
+              "Prof. Alexzander Hamill",
+              "VIP"
+            ],
+            [
+              "Prof. Reyes Berge II",
+              null
+            ],
+            [
+              "Maudie Kertzmann",
+              null
+            ],
+            [
+              "Mozell Morissette",
+              "VIP"
+            ],
+            [
+              "Eunice Morar",
+              null
+            ],
+            [
+              "Devin Mills",
+              null
+            ],
+            [
+              "Kitty Padberg III",
+              null
+            ],
+            [
+              "Salvatore Tillman",
+              null
+            ],
+            [
+              "Clifford Pagac",
+              null
+            ],
+            [
+              "Miss Aliyah Witting",
+              null
+            ],
+            [
+              "Alexane Kilback",
+              null
+            ],
+            [
+              "Prof. Ibrahim Bashirian",
+              null
+            ]
+          ],
+          "nl": "Show me the names and details of all customers.",
+          "SQLTrans": {
+            "text": "Show me the names and details of all customers."
+          },
+          "VLSpecs": [
+            {
+              "content": [
+                {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                  "data": {
+                    "values": [
+                      {
+                        "customer_name": "Dr. Julia Wuckert MD",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Tillman Ernser",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Prof. Alexzander Hamill",
+                        "other_customer_details": "VIP"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Maudie Kertzmann",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Mozell Morissette",
+                        "other_customer_details": "VIP"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Devin Mills",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Salvatore Tillman",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Miss Aliyah Witting",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Alexane Kilback",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Prof. Ibrahim Bashirian",
+                        "other_customer_details": null
+                      }
+                    ]
+                  },
+                  "encoding": {
+                    "size": {
+                      "aggregate": "count",
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "x": {
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "y": {
+                      "field": "other_customer_details",
+                      "type": "nominal"
+                    }
+                  },
+                  "mark": {
+                    "type": "point"
+                  },
+                  "transform": []
+                },
+                {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                  "data": {
+                    "values": [
+                      {
+                        "customer_name": "Dr. Julia Wuckert MD",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Tillman Ernser",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Prof. Alexzander Hamill",
+                        "other_customer_details": "VIP"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Maudie Kertzmann",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Mozell Morissette",
+                        "other_customer_details": "VIP"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Devin Mills",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Salvatore Tillman",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Miss Aliyah Witting",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Alexane Kilback",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Prof. Ibrahim Bashirian",
+                        "other_customer_details": null
+                      }
+                    ]
+                  },
+                  "encoding": {
+                    "color": {
+                      "field": "other_customer_details",
+                      "type": "nominal"
+                    },
+                    "x": {
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "y": {
+                      "aggregate": "count",
+                      "field": "customer_name",
+                      "type": "nominal"
+                    }
+                  },
+                  "mark": {
+                    "type": "bar"
+                  },
+                  "transform": []
+                }
+              ],
+              "data": [
+                {
+                  "customer_name": "Dr. Julia Wuckert MD",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Tillman Ernser",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Rodrick Heaney",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Prof. Alexzander Hamill",
+                  "other_customer_details": "VIP"
+                },
+                {
+                  "customer_name": "Prof. Reyes Berge II",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Maudie Kertzmann",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Mozell Morissette",
+                  "other_customer_details": "VIP"
+                },
+                {
+                  "customer_name": "Eunice Morar",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Devin Mills",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Kitty Padberg III",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Salvatore Tillman",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Clifford Pagac",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Miss Aliyah Witting",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Alexane Kilback",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Prof. Ibrahim Bashirian",
+                  "other_customer_details": null
+                }
+              ],
+              "type": "vega-lite"
+            }
+          ]
+        },
+        "key": "Show me the names and details of all customers.",
+        "SQLTrans": {
+          "text": "Show me the names and details of all customers."
+        },
+        "type": "vega-lite",
+        "VLSpecs": {
+          "content": [
+            {
+              "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+              "data": {
+                "values": [
+                  {
+                    "customer_name": "Dr. Julia Wuckert MD",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Tillman Ernser",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Prof. Alexzander Hamill",
+                    "other_customer_details": "VIP"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Maudie Kertzmann",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Mozell Morissette",
+                    "other_customer_details": "VIP"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Devin Mills",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Salvatore Tillman",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Miss Aliyah Witting",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Alexane Kilback",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Prof. Ibrahim Bashirian",
+                    "other_customer_details": null
+                  }
+                ]
+              },
+              "encoding": {
+                "size": {
+                  "aggregate": "count",
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "x": {
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "y": {
+                  "field": "other_customer_details",
+                  "type": "nominal"
+                }
+              },
+              "mark": {
+                "type": "point"
+              },
+              "transform": []
+            },
+            {
+              "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+              "data": {
+                "values": [
+                  {
+                    "customer_name": "Dr. Julia Wuckert MD",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Tillman Ernser",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Prof. Alexzander Hamill",
+                    "other_customer_details": "VIP"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Maudie Kertzmann",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Mozell Morissette",
+                    "other_customer_details": "VIP"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Devin Mills",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Salvatore Tillman",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Miss Aliyah Witting",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Alexane Kilback",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Prof. Ibrahim Bashirian",
+                    "other_customer_details": null
+                  }
+                ]
+              },
+              "encoding": {
+                "color": {
+                  "field": "other_customer_details",
+                  "type": "nominal"
+                },
+                "x": {
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "y": {
+                  "aggregate": "count",
+                  "field": "customer_name",
+                  "type": "nominal"
+                }
+              },
+              "mark": {
+                "type": "bar"
+              },
+              "transform": []
+            }
+          ],
+          "data": [
+            {
+              "customer_name": "Dr. Julia Wuckert MD",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Tillman Ernser",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Rodrick Heaney",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Prof. Alexzander Hamill",
+              "other_customer_details": "VIP"
+            },
+            {
+              "customer_name": "Prof. Reyes Berge II",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Maudie Kertzmann",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Mozell Morissette",
+              "other_customer_details": "VIP"
+            },
+            {
+              "customer_name": "Eunice Morar",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Devin Mills",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Kitty Padberg III",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Salvatore Tillman",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Clifford Pagac",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Miss Aliyah Witting",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Alexane Kilback",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Prof. Ibrahim Bashirian",
+              "other_customer_details": null
+            }
+          ],
+          "type": "vega-lite",
+          "title": "Show me the names and details of all customers.",
+          "sqlQuery": "SELECT customer_name, other_customer_details FROM customers;",
+          "nlQuery": "Show me the names and details of all customers.",
+          "nlExplanation": "Show me the names and details of all customers."
+        },
+        "QuerySugg": {
+          "nl": [
+            "Count how many customer names are in the customers table.",
+            "Show the dates when each customer first became a customer.",
+            "Show me the channel codes and contact numbers from all customer contact channels.",
+            "Show the order ID, customer ID, status, date, and details for all customer orders.",
+            "Show the start and end dates when customer contact methods were active.",
+            "Show the address details and their types for all customer addresses."
+          ],
+          "sql": [
+            "SELECT count(customer_name) FROM customers;",
+            "SELECT date_became_customer FROM customers;",
+            "SELECT channel_code, contact_number FROM customer_contact_channels;",
+            "SELECT order_id, customer_id, order_status, order_date, order_details FROM customer_orders;",
+            "SELECT active_from_date, active_to_date FROM customer_contact_channels;",
+            "SELECT a.other_address_details, ca.address_type FROM addresses a JOIN customer_addresses ca ON a.address_id = ca.address_id;"
+          ]
+        }
+      },
+      {
+        "SQL": {
+          "sql": "SELECT channel_code, contact_number FROM customer_contact_channels;",
+          "data": [
+            [
+              "Email",
+              "940.035.6435x0225"
+            ],
+            [
+              "Email",
+              "189.449.8326x7607"
+            ],
+            [
+              "Email",
+              "958-653-2640"
+            ],
+            [
+              "Email",
+              "1-968-863-4947x96956"
+            ],
+            [
+              "Cell",
+              "(165)527-5756x2419"
+            ],
+            [
+              "Cell",
+              "1-077-864-0102"
+            ],
+            [
+              "Handheld",
+              "06068550461"
+            ],
+            [
+              "Handheld",
+              "542.983.0224"
+            ],
+            [
+              "Handheld",
+              "(379)834-0867x267"
+            ],
+            [
+              "Handheld",
+              "(620)266-6990x8590"
+            ],
+            [
+              "Fax",
+              "(068)656-5276x84466"
+            ],
+            [
+              "Fax",
+              "496-074-8589x5477"
+            ],
+            [
+              "Handheld",
+              "1-687-190-8968x63811"
+            ],
+            [
+              "Handheld",
+              "118.523.6764x57405"
+            ],
+            [
+              "Handheld",
+              "445.924.9417"
+            ],
+            [
+              "Mobile",
+              "(155)830-6182"
+            ],
+            [
+              "Handheld",
+              "1-453-027-1291"
+            ],
+            [
+              "Handheld",
+              "026.019.5981x72518"
+            ],
+            [
+              "Cell",
+              "495-168-9662"
+            ],
+            [
+              "Cell",
+              "846.043.4809x0426"
+            ]
+          ],
+          "nl": "Show me the channel codes and contact numbers from all customer contact channels.",
+          "SQLTrans": {
+            "text": "Show me the channel codes and contact numbers from all customer contact channels."
+          },
+          "VLSpecs": [
+            {
+              "content": [
+                {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                  "data": {
+                    "values": [
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "940.035.6435x0225"
+                      },
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "189.449.8326x7607"
+                      },
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "958-653-2640"
+                      },
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "1-968-863-4947x96956"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "(165)527-5756x2419"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "1-077-864-0102"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "06068550461"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "542.983.0224"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "(379)834-0867x267"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "(620)266-6990x8590"
+                      },
+                      {
+                        "channel_code": "Fax",
+                        "contact_number": "(068)656-5276x84466"
+                      },
+                      {
+                        "channel_code": "Fax",
+                        "contact_number": "496-074-8589x5477"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "1-687-190-8968x63811"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "118.523.6764x57405"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "445.924.9417"
+                      },
+                      {
+                        "channel_code": "Mobile",
+                        "contact_number": "(155)830-6182"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "1-453-027-1291"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "026.019.5981x72518"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "495-168-9662"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "846.043.4809x0426"
+                      }
+                    ]
+                  },
+                  "encoding": {
+                    "size": {
+                      "aggregate": "count",
+                      "field": "channel_code",
+                      "type": "nominal"
+                    },
+                    "x": {
+                      "field": "channel_code",
+                      "type": "nominal"
+                    },
+                    "y": {
+                      "field": "contact_number",
+                      "type": "nominal"
+                    }
+                  },
+                  "mark": {
+                    "type": "point"
+                  },
+                  "transform": []
+                },
+                {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                  "data": {
+                    "values": [
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "940.035.6435x0225"
+                      },
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "189.449.8326x7607"
+                      },
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "958-653-2640"
+                      },
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "1-968-863-4947x96956"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "(165)527-5756x2419"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "1-077-864-0102"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "06068550461"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "542.983.0224"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "(379)834-0867x267"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "(620)266-6990x8590"
+                      },
+                      {
+                        "channel_code": "Fax",
+                        "contact_number": "(068)656-5276x84466"
+                      },
+                      {
+                        "channel_code": "Fax",
+                        "contact_number": "496-074-8589x5477"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "1-687-190-8968x63811"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "118.523.6764x57405"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "445.924.9417"
+                      },
+                      {
+                        "channel_code": "Mobile",
+                        "contact_number": "(155)830-6182"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "1-453-027-1291"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "026.019.5981x72518"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "495-168-9662"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "846.043.4809x0426"
+                      }
+                    ]
+                  },
+                  "encoding": {
+                    "color": {
+                      "field": "contact_number",
+                      "type": "nominal"
+                    },
+                    "x": {
+                      "field": "channel_code",
+                      "type": "nominal"
+                    },
+                    "y": {
+                      "aggregate": "count",
+                      "field": "channel_code",
+                      "type": "nominal"
+                    }
+                  },
+                  "mark": {
+                    "type": "bar"
+                  },
+                  "transform": []
+                }
+              ],
+              "data": [
+                {
+                  "channel_code": "Email",
+                  "contact_number": "940.035.6435x0225"
+                },
+                {
+                  "channel_code": "Email",
+                  "contact_number": "189.449.8326x7607"
+                },
+                {
+                  "channel_code": "Email",
+                  "contact_number": "958-653-2640"
+                },
+                {
+                  "channel_code": "Email",
+                  "contact_number": "1-968-863-4947x96956"
+                },
+                {
+                  "channel_code": "Cell",
+                  "contact_number": "(165)527-5756x2419"
+                },
+                {
+                  "channel_code": "Cell",
+                  "contact_number": "1-077-864-0102"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "06068550461"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "542.983.0224"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "(379)834-0867x267"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "(620)266-6990x8590"
+                },
+                {
+                  "channel_code": "Fax",
+                  "contact_number": "(068)656-5276x84466"
+                },
+                {
+                  "channel_code": "Fax",
+                  "contact_number": "496-074-8589x5477"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "1-687-190-8968x63811"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "118.523.6764x57405"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "445.924.9417"
+                },
+                {
+                  "channel_code": "Mobile",
+                  "contact_number": "(155)830-6182"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "1-453-027-1291"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "026.019.5981x72518"
+                },
+                {
+                  "channel_code": "Cell",
+                  "contact_number": "495-168-9662"
+                },
+                {
+                  "channel_code": "Cell",
+                  "contact_number": "846.043.4809x0426"
+                }
+              ],
+              "type": "vega-lite"
+            }
+          ]
+        },
+        "key": "Show me the channel codes and contact numbers from all customer contact channels.",
+        "SQLTrans": {
+          "text": "Show me the channel codes and contact numbers from all customer contact channels."
+        },
+        "type": "vega-lite",
+        "VLSpecs": {
+          "content": [
+            {
+              "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+              "data": {
+                "values": [
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "940.035.6435x0225"
+                  },
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "189.449.8326x7607"
+                  },
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "958-653-2640"
+                  },
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "1-968-863-4947x96956"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "(165)527-5756x2419"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "1-077-864-0102"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "06068550461"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "542.983.0224"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "(379)834-0867x267"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "(620)266-6990x8590"
+                  },
+                  {
+                    "channel_code": "Fax",
+                    "contact_number": "(068)656-5276x84466"
+                  },
+                  {
+                    "channel_code": "Fax",
+                    "contact_number": "496-074-8589x5477"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "1-687-190-8968x63811"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "118.523.6764x57405"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "445.924.9417"
+                  },
+                  {
+                    "channel_code": "Mobile",
+                    "contact_number": "(155)830-6182"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "1-453-027-1291"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "026.019.5981x72518"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "495-168-9662"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "846.043.4809x0426"
+                  }
+                ]
+              },
+              "encoding": {
+                "size": {
+                  "aggregate": "count",
+                  "field": "channel_code",
+                  "type": "nominal"
+                },
+                "x": {
+                  "field": "channel_code",
+                  "type": "nominal"
+                },
+                "y": {
+                  "field": "contact_number",
+                  "type": "nominal"
+                }
+              },
+              "mark": {
+                "type": "point"
+              },
+              "transform": []
+            },
+            {
+              "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+              "data": {
+                "values": [
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "940.035.6435x0225"
+                  },
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "189.449.8326x7607"
+                  },
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "958-653-2640"
+                  },
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "1-968-863-4947x96956"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "(165)527-5756x2419"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "1-077-864-0102"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "06068550461"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "542.983.0224"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "(379)834-0867x267"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "(620)266-6990x8590"
+                  },
+                  {
+                    "channel_code": "Fax",
+                    "contact_number": "(068)656-5276x84466"
+                  },
+                  {
+                    "channel_code": "Fax",
+                    "contact_number": "496-074-8589x5477"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "1-687-190-8968x63811"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "118.523.6764x57405"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "445.924.9417"
+                  },
+                  {
+                    "channel_code": "Mobile",
+                    "contact_number": "(155)830-6182"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "1-453-027-1291"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "026.019.5981x72518"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "495-168-9662"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "846.043.4809x0426"
+                  }
+                ]
+              },
+              "encoding": {
+                "color": {
+                  "field": "contact_number",
+                  "type": "nominal"
+                },
+                "x": {
+                  "field": "channel_code",
+                  "type": "nominal"
+                },
+                "y": {
+                  "aggregate": "count",
+                  "field": "channel_code",
+                  "type": "nominal"
+                }
+              },
+              "mark": {
+                "type": "bar"
+              },
+              "transform": []
+            }
+          ],
+          "data": [
+            {
+              "channel_code": "Email",
+              "contact_number": "940.035.6435x0225"
+            },
+            {
+              "channel_code": "Email",
+              "contact_number": "189.449.8326x7607"
+            },
+            {
+              "channel_code": "Email",
+              "contact_number": "958-653-2640"
+            },
+            {
+              "channel_code": "Email",
+              "contact_number": "1-968-863-4947x96956"
+            },
+            {
+              "channel_code": "Cell",
+              "contact_number": "(165)527-5756x2419"
+            },
+            {
+              "channel_code": "Cell",
+              "contact_number": "1-077-864-0102"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "06068550461"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "542.983.0224"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "(379)834-0867x267"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "(620)266-6990x8590"
+            },
+            {
+              "channel_code": "Fax",
+              "contact_number": "(068)656-5276x84466"
+            },
+            {
+              "channel_code": "Fax",
+              "contact_number": "496-074-8589x5477"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "1-687-190-8968x63811"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "118.523.6764x57405"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "445.924.9417"
+            },
+            {
+              "channel_code": "Mobile",
+              "contact_number": "(155)830-6182"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "1-453-027-1291"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "026.019.5981x72518"
+            },
+            {
+              "channel_code": "Cell",
+              "contact_number": "495-168-9662"
+            },
+            {
+              "channel_code": "Cell",
+              "contact_number": "846.043.4809x0426"
+            }
+          ],
+          "type": "vega-lite",
+          "title": "Show me the channel codes and contact numbers from all customer contact channels.",
+          "sqlQuery": "SELECT channel_code, contact_number FROM customer_contact_channels;",
+          "nlQuery": "Show me the channel codes and contact numbers from all customer contact channels.",
+          "nlExplanation": "Show me the channel codes and contact numbers from all customer contact channels."
+        },
+        "QuerySugg": {
+          "nl": [
+            "Show the dates when each customer first became a customer.",
+            "Show the start and end dates when customer contact methods were active.",
+            "Show me the order ID, customer ID, status, date, and details for all customer orders.",
+            "Show the address details and their types for all customer addresses.",
+            "Show the quantity ordered and product details for all items in orders by matching each item to its corresponding product."
+          ],
+          "sql": [
+            "SELECT date_became_customer FROM customers;",
+            "SELECT active_from_date, active_to_date FROM customer_contact_channels;",
+            "SELECT order_id, customer_id, order_status, order_date, order_details FROM customer_orders;",
+            "SELECT a.other_address_details, ca.address_type FROM addresses a JOIN customer_addresses ca ON a.address_id = ca.address_id;",
+            "SELECT oi.order_quantity, p.product_details FROM order_items oi JOIN products p ON oi.product_id = p.product_id;"
+          ]
+        }
+      }
+    ]
+  }
+}

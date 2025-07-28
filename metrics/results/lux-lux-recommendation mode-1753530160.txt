@@ -1,0 +1,17 @@
+============================================================
+          Comprehensive Objective Metrics Evaluation Results
+============================================================
+
+--- Coverage Metrics ---
+Table Coverage                     : 0.4286
+Column Coverage                    : 0.1923
+Aggregation Coverage               : 0.0000
+Clause Coverage                    : 0.0000
+
+--- Session Cohesion Metrics ---
+Edit Index                         : 0.6000
+Jaccard Index                      : 0.2500
+Cosine Index                       : 0.8944
+Common Fragments Index             : 0.1000
+Common Tables Index                : 0.5000
+============================================================
