@@ -1,0 +1,1382 @@
+{
+  "userid": "best",
+  "username": "best",
+  "starttime": 1753006794611,
+  "endtime": 1753007036832,
+  "systype": "recommendation mode",
+  "userdata": {
+    "origQuerySugg": {
+      "nl": [
+        "Show me the channel codes and contact numbers from all customer contact channels.",
+        "Show the order ID, customer ID, status, date, and details for all customer orders.",
+        "Show the dates when orders were placed by customers.",
+        "Show the start and end dates for all customer addresses.",
+        "Show the start and end dates when customer contact methods were active."
+      ],
+      "sql": [
+        "SELECT channel_code, contact_number FROM customer_contact_channels;",
+        "SELECT order_id, customer_id, order_status, order_date, order_details FROM customer_orders;",
+        "SELECT order_date FROM customer_orders;",
+        "SELECT date_address_from, date_address_to FROM customer_addresses;",
+        "SELECT active_from_date, active_to_date FROM customer_contact_channels;"
+      ]
+    },
+    "suerQueryData": [
+      {
+        "SQL": {
+          "sql": "SELECT channel_code, contact_number FROM customer_contact_channels;",
+          "data": [
+            [
+              "Email",
+              "940.035.6435x0225"
+            ],
+            [
+              "Email",
+              "189.449.8326x7607"
+            ],
+            [
+              "Email",
+              "958-653-2640"
+            ],
+            [
+              "Email",
+              "1-968-863-4947x96956"
+            ],
+            [
+              "Cell",
+              "(165)527-5756x2419"
+            ],
+            [
+              "Cell",
+              "1-077-864-0102"
+            ],
+            [
+              "Handheld",
+              "06068550461"
+            ],
+            [
+              "Handheld",
+              "542.983.0224"
+            ],
+            [
+              "Handheld",
+              "(379)834-0867x267"
+            ],
+            [
+              "Handheld",
+              "(620)266-6990x8590"
+            ],
+            [
+              "Fax",
+              "(068)656-5276x84466"
+            ],
+            [
+              "Fax",
+              "496-074-8589x5477"
+            ],
+            [
+              "Handheld",
+              "1-687-190-8968x63811"
+            ],
+            [
+              "Handheld",
+              "118.523.6764x57405"
+            ],
+            [
+              "Handheld",
+              "445.924.9417"
+            ],
+            [
+              "Mobile",
+              "(155)830-6182"
+            ],
+            [
+              "Handheld",
+              "1-453-027-1291"
+            ],
+            [
+              "Handheld",
+              "026.019.5981x72518"
+            ],
+            [
+              "Cell",
+              "495-168-9662"
+            ],
+            [
+              "Cell",
+              "846.043.4809x0426"
+            ]
+          ],
+          "nl": "Show me the channel codes and contact numbers from all customer contact channels.",
+          "SQLTrans": {
+            "text": "Show me the channel codes and contact numbers from all customer contact channels."
+          },
+          "VLSpecs": [
+            {
+              "content": [
+                {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                  "data": {
+                    "values": [
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "940.035.6435x0225"
+                      },
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "189.449.8326x7607"
+                      },
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "958-653-2640"
+                      },
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "1-968-863-4947x96956"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "(165)527-5756x2419"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "1-077-864-0102"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "06068550461"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "542.983.0224"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "(379)834-0867x267"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "(620)266-6990x8590"
+                      },
+                      {
+                        "channel_code": "Fax",
+                        "contact_number": "(068)656-5276x84466"
+                      },
+                      {
+                        "channel_code": "Fax",
+                        "contact_number": "496-074-8589x5477"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "1-687-190-8968x63811"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "118.523.6764x57405"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "445.924.9417"
+                      },
+                      {
+                        "channel_code": "Mobile",
+                        "contact_number": "(155)830-6182"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "1-453-027-1291"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "026.019.5981x72518"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "495-168-9662"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "846.043.4809x0426"
+                      }
+                    ]
+                  },
+                  "encoding": {
+                    "size": {
+                      "aggregate": "count",
+                      "field": "channel_code",
+                      "type": "nominal"
+                    },
+                    "x": {
+                      "field": "channel_code",
+                      "type": "nominal"
+                    },
+                    "y": {
+                      "field": "contact_number",
+                      "type": "nominal"
+                    }
+                  },
+                  "mark": {
+                    "type": "point"
+                  },
+                  "transform": []
+                },
+                {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                  "data": {
+                    "values": [
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "940.035.6435x0225"
+                      },
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "189.449.8326x7607"
+                      },
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "958-653-2640"
+                      },
+                      {
+                        "channel_code": "Email",
+                        "contact_number": "1-968-863-4947x96956"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "(165)527-5756x2419"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "1-077-864-0102"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "06068550461"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "542.983.0224"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "(379)834-0867x267"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "(620)266-6990x8590"
+                      },
+                      {
+                        "channel_code": "Fax",
+                        "contact_number": "(068)656-5276x84466"
+                      },
+                      {
+                        "channel_code": "Fax",
+                        "contact_number": "496-074-8589x5477"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "1-687-190-8968x63811"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "118.523.6764x57405"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "445.924.9417"
+                      },
+                      {
+                        "channel_code": "Mobile",
+                        "contact_number": "(155)830-6182"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "1-453-027-1291"
+                      },
+                      {
+                        "channel_code": "Handheld",
+                        "contact_number": "026.019.5981x72518"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "495-168-9662"
+                      },
+                      {
+                        "channel_code": "Cell",
+                        "contact_number": "846.043.4809x0426"
+                      }
+                    ]
+                  },
+                  "encoding": {
+                    "color": {
+                      "field": "contact_number",
+                      "type": "nominal"
+                    },
+                    "x": {
+                      "field": "channel_code",
+                      "type": "nominal"
+                    },
+                    "y": {
+                      "aggregate": "count",
+                      "field": "channel_code",
+                      "type": "nominal"
+                    }
+                  },
+                  "mark": {
+                    "type": "bar"
+                  },
+                  "transform": []
+                }
+              ],
+              "data": [
+                {
+                  "channel_code": "Email",
+                  "contact_number": "940.035.6435x0225"
+                },
+                {
+                  "channel_code": "Email",
+                  "contact_number": "189.449.8326x7607"
+                },
+                {
+                  "channel_code": "Email",
+                  "contact_number": "958-653-2640"
+                },
+                {
+                  "channel_code": "Email",
+                  "contact_number": "1-968-863-4947x96956"
+                },
+                {
+                  "channel_code": "Cell",
+                  "contact_number": "(165)527-5756x2419"
+                },
+                {
+                  "channel_code": "Cell",
+                  "contact_number": "1-077-864-0102"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "06068550461"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "542.983.0224"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "(379)834-0867x267"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "(620)266-6990x8590"
+                },
+                {
+                  "channel_code": "Fax",
+                  "contact_number": "(068)656-5276x84466"
+                },
+                {
+                  "channel_code": "Fax",
+                  "contact_number": "496-074-8589x5477"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "1-687-190-8968x63811"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "118.523.6764x57405"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "445.924.9417"
+                },
+                {
+                  "channel_code": "Mobile",
+                  "contact_number": "(155)830-6182"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "1-453-027-1291"
+                },
+                {
+                  "channel_code": "Handheld",
+                  "contact_number": "026.019.5981x72518"
+                },
+                {
+                  "channel_code": "Cell",
+                  "contact_number": "495-168-9662"
+                },
+                {
+                  "channel_code": "Cell",
+                  "contact_number": "846.043.4809x0426"
+                }
+              ],
+              "type": "vega-lite"
+            }
+          ]
+        },
+        "key": "Show me the channel codes and contact numbers from all customer contact channels.",
+        "SQLTrans": {
+          "text": "Show me the channel codes and contact numbers from all customer contact channels."
+        },
+        "type": "vega-lite",
+        "VLSpecs": {
+          "content": [
+            {
+              "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+              "data": {
+                "values": [
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "940.035.6435x0225"
+                  },
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "189.449.8326x7607"
+                  },
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "958-653-2640"
+                  },
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "1-968-863-4947x96956"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "(165)527-5756x2419"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "1-077-864-0102"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "06068550461"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "542.983.0224"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "(379)834-0867x267"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "(620)266-6990x8590"
+                  },
+                  {
+                    "channel_code": "Fax",
+                    "contact_number": "(068)656-5276x84466"
+                  },
+                  {
+                    "channel_code": "Fax",
+                    "contact_number": "496-074-8589x5477"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "1-687-190-8968x63811"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "118.523.6764x57405"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "445.924.9417"
+                  },
+                  {
+                    "channel_code": "Mobile",
+                    "contact_number": "(155)830-6182"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "1-453-027-1291"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "026.019.5981x72518"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "495-168-9662"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "846.043.4809x0426"
+                  }
+                ]
+              },
+              "encoding": {
+                "size": {
+                  "aggregate": "count",
+                  "field": "channel_code",
+                  "type": "nominal"
+                },
+                "x": {
+                  "field": "channel_code",
+                  "type": "nominal"
+                },
+                "y": {
+                  "field": "contact_number",
+                  "type": "nominal"
+                }
+              },
+              "mark": {
+                "type": "point"
+              },
+              "transform": []
+            },
+            {
+              "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+              "data": {
+                "values": [
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "940.035.6435x0225"
+                  },
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "189.449.8326x7607"
+                  },
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "958-653-2640"
+                  },
+                  {
+                    "channel_code": "Email",
+                    "contact_number": "1-968-863-4947x96956"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "(165)527-5756x2419"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "1-077-864-0102"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "06068550461"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "542.983.0224"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "(379)834-0867x267"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "(620)266-6990x8590"
+                  },
+                  {
+                    "channel_code": "Fax",
+                    "contact_number": "(068)656-5276x84466"
+                  },
+                  {
+                    "channel_code": "Fax",
+                    "contact_number": "496-074-8589x5477"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "1-687-190-8968x63811"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "118.523.6764x57405"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "445.924.9417"
+                  },
+                  {
+                    "channel_code": "Mobile",
+                    "contact_number": "(155)830-6182"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "1-453-027-1291"
+                  },
+                  {
+                    "channel_code": "Handheld",
+                    "contact_number": "026.019.5981x72518"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "495-168-9662"
+                  },
+                  {
+                    "channel_code": "Cell",
+                    "contact_number": "846.043.4809x0426"
+                  }
+                ]
+              },
+              "encoding": {
+                "color": {
+                  "field": "contact_number",
+                  "type": "nominal"
+                },
+                "x": {
+                  "field": "channel_code",
+                  "type": "nominal"
+                },
+                "y": {
+                  "aggregate": "count",
+                  "field": "channel_code",
+                  "type": "nominal"
+                }
+              },
+              "mark": {
+                "type": "bar"
+              },
+              "transform": []
+            }
+          ],
+          "data": [
+            {
+              "channel_code": "Email",
+              "contact_number": "940.035.6435x0225"
+            },
+            {
+              "channel_code": "Email",
+              "contact_number": "189.449.8326x7607"
+            },
+            {
+              "channel_code": "Email",
+              "contact_number": "958-653-2640"
+            },
+            {
+              "channel_code": "Email",
+              "contact_number": "1-968-863-4947x96956"
+            },
+            {
+              "channel_code": "Cell",
+              "contact_number": "(165)527-5756x2419"
+            },
+            {
+              "channel_code": "Cell",
+              "contact_number": "1-077-864-0102"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "06068550461"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "542.983.0224"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "(379)834-0867x267"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "(620)266-6990x8590"
+            },
+            {
+              "channel_code": "Fax",
+              "contact_number": "(068)656-5276x84466"
+            },
+            {
+              "channel_code": "Fax",
+              "contact_number": "496-074-8589x5477"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "1-687-190-8968x63811"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "118.523.6764x57405"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "445.924.9417"
+            },
+            {
+              "channel_code": "Mobile",
+              "contact_number": "(155)830-6182"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "1-453-027-1291"
+            },
+            {
+              "channel_code": "Handheld",
+              "contact_number": "026.019.5981x72518"
+            },
+            {
+              "channel_code": "Cell",
+              "contact_number": "495-168-9662"
+            },
+            {
+              "channel_code": "Cell",
+              "contact_number": "846.043.4809x0426"
+            }
+          ],
+          "type": "vega-lite",
+          "title": "Show me the channel codes and contact numbers from all customer contact channels.",
+          "sqlQuery": "SELECT channel_code, contact_number FROM customer_contact_channels;",
+          "nlQuery": "Show me the channel codes and contact numbers from all customer contact channels.",
+          "nlExplanation": "Show me the channel codes and contact numbers from all customer contact channels."
+        },
+        "QuerySugg": {
+          "nl": [
+            "Show me the names and details of all customers.",
+            "Show the dates when each customer first became a customer.",
+            "Show the start and end dates when customer contact methods were active.",
+            "Show me the address details and any other information about the addresses.",
+            "Show the city and country from all addresses."
+          ],
+          "sql": [
+            "SELECT customer_name, other_customer_details FROM customers;",
+            "SELECT date_became_customer FROM customers;",
+            "SELECT active_from_date, active_to_date FROM customer_contact_channels;",
+            "SELECT address_content, other_address_details FROM addresses;",
+            "SELECT city, country FROM addresses;"
+          ]
+        }
+      },
+      {
+        "SQL": {
+          "sql": "SELECT customer_name, other_customer_details FROM customers;",
+          "data": [
+            [
+              "Dr. Julia Wuckert MD",
+              null
+            ],
+            [
+              "Tillman Ernser",
+              null
+            ],
+            [
+              "Rodrick Heaney",
+              null
+            ],
+            [
+              "Prof. Alexzander Hamill",
+              "VIP"
+            ],
+            [
+              "Prof. Reyes Berge II",
+              null
+            ],
+            [
+              "Maudie Kertzmann",
+              null
+            ],
+            [
+              "Mozell Morissette",
+              "VIP"
+            ],
+            [
+              "Eunice Morar",
+              null
+            ],
+            [
+              "Devin Mills",
+              null
+            ],
+            [
+              "Kitty Padberg III",
+              null
+            ],
+            [
+              "Salvatore Tillman",
+              null
+            ],
+            [
+              "Clifford Pagac",
+              null
+            ],
+            [
+              "Miss Aliyah Witting",
+              null
+            ],
+            [
+              "Alexane Kilback",
+              null
+            ],
+            [
+              "Prof. Ibrahim Bashirian",
+              null
+            ]
+          ],
+          "nl": "Show me the names and details of all customers.",
+          "SQLTrans": {
+            "text": "Show me the names and details of all customers."
+          },
+          "VLSpecs": [
+            {
+              "content": [
+                {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                  "data": {
+                    "values": [
+                      {
+                        "customer_name": "Dr. Julia Wuckert MD",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Tillman Ernser",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Prof. Alexzander Hamill",
+                        "other_customer_details": "VIP"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Maudie Kertzmann",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Mozell Morissette",
+                        "other_customer_details": "VIP"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Devin Mills",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Salvatore Tillman",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Miss Aliyah Witting",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Alexane Kilback",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Prof. Ibrahim Bashirian",
+                        "other_customer_details": null
+                      }
+                    ]
+                  },
+                  "encoding": {
+                    "size": {
+                      "aggregate": "count",
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "x": {
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "y": {
+                      "field": "other_customer_details",
+                      "type": "nominal"
+                    }
+                  },
+                  "mark": {
+                    "type": "point"
+                  },
+                  "transform": []
+                },
+                {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                  "data": {
+                    "values": [
+                      {
+                        "customer_name": "Dr. Julia Wuckert MD",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Tillman Ernser",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Rodrick Heaney",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Prof. Alexzander Hamill",
+                        "other_customer_details": "VIP"
+                      },
+                      {
+                        "customer_name": "Prof. Reyes Berge II",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Maudie Kertzmann",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Mozell Morissette",
+                        "other_customer_details": "VIP"
+                      },
+                      {
+                        "customer_name": "Eunice Morar",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Devin Mills",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Kitty Padberg III",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Salvatore Tillman",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Clifford Pagac",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Miss Aliyah Witting",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Alexane Kilback",
+                        "other_customer_details": null
+                      },
+                      {
+                        "customer_name": "Prof. Ibrahim Bashirian",
+                        "other_customer_details": null
+                      }
+                    ]
+                  },
+                  "encoding": {
+                    "color": {
+                      "field": "other_customer_details",
+                      "type": "nominal"
+                    },
+                    "x": {
+                      "field": "customer_name",
+                      "type": "nominal"
+                    },
+                    "y": {
+                      "aggregate": "count",
+                      "field": "customer_name",
+                      "type": "nominal"
+                    }
+                  },
+                  "mark": {
+                    "type": "bar"
+                  },
+                  "transform": []
+                }
+              ],
+              "data": [
+                {
+                  "customer_name": "Dr. Julia Wuckert MD",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Tillman Ernser",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Rodrick Heaney",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Prof. Alexzander Hamill",
+                  "other_customer_details": "VIP"
+                },
+                {
+                  "customer_name": "Prof. Reyes Berge II",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Maudie Kertzmann",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Mozell Morissette",
+                  "other_customer_details": "VIP"
+                },
+                {
+                  "customer_name": "Eunice Morar",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Devin Mills",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Kitty Padberg III",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Salvatore Tillman",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Clifford Pagac",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Miss Aliyah Witting",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Alexane Kilback",
+                  "other_customer_details": null
+                },
+                {
+                  "customer_name": "Prof. Ibrahim Bashirian",
+                  "other_customer_details": null
+                }
+              ],
+              "type": "vega-lite"
+            }
+          ]
+        },
+        "key": "Show me the names and details of all customers.",
+        "SQLTrans": {
+          "text": "Show me the names and details of all customers."
+        },
+        "type": "vega-lite",
+        "VLSpecs": {
+          "content": [
+            {
+              "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+              "data": {
+                "values": [
+                  {
+                    "customer_name": "Dr. Julia Wuckert MD",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Tillman Ernser",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Prof. Alexzander Hamill",
+                    "other_customer_details": "VIP"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Maudie Kertzmann",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Mozell Morissette",
+                    "other_customer_details": "VIP"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Devin Mills",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Salvatore Tillman",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Miss Aliyah Witting",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Alexane Kilback",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Prof. Ibrahim Bashirian",
+                    "other_customer_details": null
+                  }
+                ]
+              },
+              "encoding": {
+                "size": {
+                  "aggregate": "count",
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "x": {
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "y": {
+                  "field": "other_customer_details",
+                  "type": "nominal"
+                }
+              },
+              "mark": {
+                "type": "point"
+              },
+              "transform": []
+            },
+            {
+              "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+              "data": {
+                "values": [
+                  {
+                    "customer_name": "Dr. Julia Wuckert MD",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Tillman Ernser",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Rodrick Heaney",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Prof. Alexzander Hamill",
+                    "other_customer_details": "VIP"
+                  },
+                  {
+                    "customer_name": "Prof. Reyes Berge II",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Maudie Kertzmann",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Mozell Morissette",
+                    "other_customer_details": "VIP"
+                  },
+                  {
+                    "customer_name": "Eunice Morar",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Devin Mills",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Kitty Padberg III",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Salvatore Tillman",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Clifford Pagac",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Miss Aliyah Witting",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Alexane Kilback",
+                    "other_customer_details": null
+                  },
+                  {
+                    "customer_name": "Prof. Ibrahim Bashirian",
+                    "other_customer_details": null
+                  }
+                ]
+              },
+              "encoding": {
+                "color": {
+                  "field": "other_customer_details",
+                  "type": "nominal"
+                },
+                "x": {
+                  "field": "customer_name",
+                  "type": "nominal"
+                },
+                "y": {
+                  "aggregate": "count",
+                  "field": "customer_name",
+                  "type": "nominal"
+                }
+              },
+              "mark": {
+                "type": "bar"
+              },
+              "transform": []
+            }
+          ],
+          "data": [
+            {
+              "customer_name": "Dr. Julia Wuckert MD",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Tillman Ernser",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Rodrick Heaney",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Prof. Alexzander Hamill",
+              "other_customer_details": "VIP"
+            },
+            {
+              "customer_name": "Prof. Reyes Berge II",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Maudie Kertzmann",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Mozell Morissette",
+              "other_customer_details": "VIP"
+            },
+            {
+              "customer_name": "Eunice Morar",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Devin Mills",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Kitty Padberg III",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Salvatore Tillman",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Clifford Pagac",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Miss Aliyah Witting",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Alexane Kilback",
+              "other_customer_details": null
+            },
+            {
+              "customer_name": "Prof. Ibrahim Bashirian",
+              "other_customer_details": null
+            }
+          ],
+          "type": "vega-lite",
+          "title": "Show me the names and details of all customers.",
+          "sqlQuery": "SELECT customer_name, other_customer_details FROM customers;",
+          "nlQuery": "Show me the names and details of all customers.",
+          "nlExplanation": "Show me the names and details of all customers."
+        },
+        "QuerySugg": {
+          "nl": [
+            "Count how many customer names are in the customers table.",
+            "Show the dates when each customer first became a customer.",
+            "Show the quantity ordered and product details for all items in orders by matching each order item with its corresponding product.",
+            "Show me the order ID, customer ID, status, date, and details for all customer orders.",
+            "Show me the address details and other related information from the addresses list.",
+            "Show the start and end dates when customer contact methods were active."
+          ],
+          "sql": [
+            "SELECT count(customer_name) FROM customers;",
+            "SELECT date_became_customer FROM customers;",
+            "SELECT oi.order_quantity, p.product_details FROM order_items oi JOIN products p ON oi.product_id = p.product_id;",
+            "SELECT order_id, customer_id, order_status, order_date, order_details FROM customer_orders;",
+            "SELECT address_content, other_address_details FROM addresses;",
+            "SELECT active_from_date, active_to_date FROM customer_contact_channels;"
+          ]
+        }
+      },
+      {
+        "SQL": {
+          "sql": "SELECT count(customer_name) FROM customers;",
+          "data": [
+            [
+              15
+            ]
+          ],
+          "nl": "Count how many customer names are in the customers table.",
+          "SQLTrans": {
+            "text": "Count how many customer names are in the customers list."
+          },
+          "VLSpecs": [
+            {
+              "content": 15,
+              "data": [
+                {
+                  "count(customer_name)": 15
+                }
+              ],
+              "type": "data"
+            }
+          ]
+        },
+        "key": "Count how many customer names are in the customers table.",
+        "SQLTrans": {
+          "text": "Count how many customer names are in the customers list."
+        },
+        "type": "data",
+        "VLSpecs": {
+          "content": 15,
+          "data": [
+            {
+              "count(customer_name)": 15
+            }
+          ],
+          "type": "data",
+          "title": "Count how many customer names are in the customers table.",
+          "sqlQuery": "SELECT count(customer_name) FROM customers;",
+          "nlQuery": "Count how many customer names are in the customers table.",
+          "nlExplanation": "Count how many customer names are in the customers list."
+        },
+        "QuerySugg": {
+          "nl": [
+            "Count how many customer names are in the customers list.",
+            "Show the dates when each customer first became a customer.",
+            "Show the order ID, customer ID, status, date, and details for all customer orders.",
+            "Show the quantity ordered and product details for all items in orders by matching each ordered item with its corresponding product.",
+            "Show the start and end dates when customer contact methods were active.",
+            "Show me the address details and other related information from the addresses list."
+          ],
+          "sql": [
+            "SELECT count(customer_name) FROM customers;",
+            "SELECT date_became_customer FROM customers;",
+            "SELECT order_id, customer_id, order_status, order_date, order_details FROM customer_orders;",
+            "SELECT oi.order_quantity, p.product_details FROM order_items oi JOIN products p ON oi.product_id = p.product_id;",
+            "SELECT active_from_date, active_to_date FROM customer_contact_channels;",
+            "SELECT address_content, other_address_details FROM addresses;"
+          ]
+        }
+      }
+    ]
+  }
+}
