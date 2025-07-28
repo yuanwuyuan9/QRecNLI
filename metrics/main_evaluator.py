@@ -77,7 +77,7 @@ if __name__ == "__main__":
     USER_JSON_DIR = "./sample-data"
     # This needs to be configured to specify the database for analysis.
     DEFAULT_SCHEMA_FOLDER = "customers_and_addresses"
-    SCHEMA_BASE_DIR = "D:\桌面\QRec-NLI\QRecNLI\metrics\dataset\spider\database"
+    SCHEMA_BASE_DIR = "../backend/app/data/dataset/spider/database"
     if not os.path.isdir(USER_JSON_DIR):
         print(f"Error: User JSON file directory '{USER_JSON_DIR}' does not exist. Please check the path.")
     else:
