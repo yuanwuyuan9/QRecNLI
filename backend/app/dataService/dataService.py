@@ -400,7 +400,10 @@ class DataService(object):
         # print('table_name_list',table_name_list)
         # print('table_name_list.keys',table_name_list.keys())
 
-        index=list(table_name_list.keys()).index(C_table_name)
+        normalized_table_name = C_table_name.replace('_', ' ').lower()
+        # print('normalized_table_name',normalized_table_name)
+
+        index=list(table_name_list.keys()).index(normalized_table_name)
         #index = vis['df_index']
         # print('index',index)
         #C_vis_obj = vis['vis_obj']
