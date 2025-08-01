@@ -3,6 +3,7 @@ import sys
 import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
+nltk.download('punkt_tab')
 import pathlib
 import numpy as np
 
