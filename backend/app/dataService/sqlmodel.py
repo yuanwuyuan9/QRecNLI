@@ -99,7 +99,7 @@ class sqlModel(object):
         res = db_chain.run(q)
         cleaned_res = clean_sql(res)
         # remove limit clause
-        res_ = remove_sql_clause(res, "LIMIT")
+        res_ = remove_sql_clause(cleaned_res, "LIMIT")
         return res_
 
     def sql2text(self, sql: str = "SELECT name ,  country ,  age FROM singer ORDER BY age DESC"):
