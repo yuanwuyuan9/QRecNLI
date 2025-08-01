@@ -79,8 +79,7 @@ PROMPT = PromptTemplate(
 
 class sqlModel(object):
     def __init__(self):
-        self.model = ChatOpenAI(model_name="gpt-3.5-turbo-1106", temperature=0, openai_api_key = GV.openai_key)
-                                # , model_kwargs={"seed": 42})
+        self.model = ChatOpenAI(model_name="gpt-3.5-turbo-1106", temperature=0, openai_api_key = GV.openai_key, model_kwargs={"seed": 42})
         self.spider_dataset_dir = GV.SPIDER_FOLDER
 
     def predict(self, q, db_id):
