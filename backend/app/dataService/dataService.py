@@ -665,7 +665,7 @@ if __name__ == '__main__':
     dataService.set_query_context(sql, db_id)
     vis,vis_table = dataService.sql2vis(sql, db_id)
     print(vis, vis_table)
-    exit()
+    
     ############### test sql2nl
     '''
     sql = "SELECT cinema_id FROM cinema WHERE openning_year=2020"

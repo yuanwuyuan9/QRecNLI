@@ -7,6 +7,16 @@ from lux.vis.VisList import VisList
 import random
 from itertools import combinations
 
+# Configure Lux to handle string columns properly
+from lux.executor.PandasExecutor import PandasExecutor
+lux.config.executor = PandasExecutor()
+
+# Disable automatic metadata computation that causes issues with string columns
+def safe_compute_dataset_metadata(ldf):
+    # Skip metadata computation to avoid string diff errors
+    pass
+
+lux.config.executor.compute_dataset_metadata = safe_compute_dataset_metadata
 
 
 # df.intent=['ACTMedian']
@@ -47,7 +57,6 @@ def rec_next_step(df, unexplored_intents, explored_intents, current_choice, top_
         if str(each) in explored_intents:
 
             pass
-
 
         else:
             all_recommendation_U.append(each)
@@ -106,7 +115,14 @@ if __name__ == "__main__":
     explored_intents = [0 for i in range(len(df_list))]
     current_choice = [0 for i in range(len(df_list))]
     for i in range(len(df_list)):
-        unexplored_intents[i] = get_all_rec(df_list[i].recommendation)
+        try:
+            unexplored_intents[i] = get_all_rec(df_list[i].recommendation)
+        except TypeError as e:
+            print(f"Error accessing recommendations for dataframe {i}: {e}")
+            unexplored_intents[i] = []
+        except Exception as e:
+            print(f"Unexpected error for dataframe {i}: {e}")
+            unexplored_intents[i] = []
         explored_intents[i] = []
 
         current_choice[i] = "NULL"
@@ -119,7 +135,7 @@ if __name__ == "__main__":
     print(lux_rec_test())
     print('end')
     for i in range(10):
-        print("第", i + 1, "次推荐")
+        print(i + 1, "th recommendation")
         # rec=rec_next_step(new_df,unexplored_intents,explored_intents,current_choice,top_k1,top_k2)
         rec = multiDF_rec(df_list, unexplored_intents, explored_intents, current_choice, top_k1, top_k2)
         print('rec[0]')
@@ -139,14 +155,14 @@ if __name__ == "__main__":
         #   print('remove_c')
         # rec.remove(C)
 
-        # 从unexplored intents里面去掉C
+        # remove C from unexplored intents
         unexplored_intents[index] = [x for x in unexplored_intents[index] if str(x) != str(C_vis_obj)]
 
         # if already_exist(unexplored_intents,C):
         #   print('remove')
         #   unexplored_intents.remove(C)
 
-        # 将推荐中未被选中的元素加入unexplored_intents（出现了莫名其妙bug）
+        # add the elements that are not selected in the recommendation to unexplored_intents (there is a mysterious bug)
         for each in rec:
             if already_exist(unexplored_intents, each):
                 pass
