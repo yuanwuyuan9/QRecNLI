@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine
+from utils.processSQL.clean_sql import clean_sql
 from langchain.sql_database import SQLDatabase
 import os, json, re
 from langchain_experimental.sql import SQLDatabaseChain
@@ -67,6 +68,8 @@ SQLQuery: SQL Query to run
 SQLResult: Result of the SQLQuery
 Answer: Final answer here
 
+IMPORTANT: After the 'SQLQuery:' tag, only provide the SQL code and nothing else. Do not add any explanations, notes, or comments.
+
 """
 
 PROMPT = PromptTemplate(
@@ -94,13 +97,16 @@ class sqlModel(object):
                           prompt=PROMPT
                          )
         res = db_chain.run(q)
+        cleaned_res = clean_sql(res)
         # remove limit clause
-        res_ = remove_sql_clause(res, "LIMIT")
+        res_ = remove_sql_clause(cleaned_res, "LIMIT")
         return res_
 
     def sql2text(self, sql: str = "SELECT name ,  country ,  age FROM singer ORDER BY age DESC"):
         sql2text_prompt = """
         Please translate the following sql query into natural language to users who do not have sql knowledge and keep it simple. Please only output the natural language result.
+
+        IMPORTANT: Your response MUST be ONLY the translated natural language sentence. Do NOT include any introductory phrases like "This query retrieves..." or "The natural language translation is:".
 
         {sql}
 
