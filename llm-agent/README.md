@@ -115,7 +115,7 @@ This will produce a detailed log file named `simulation_log_with_recs_customers_
 
 ### Evaluation: How to test
 
-Once the simulation log is generated, run the evaluation script. Make sure the `log_file_to_evaluate` variable in `LLM_evaluation.py` points to the correct log file.
+Once the simulation log is generated, run the evaluation script. Make sure the `log_file_to_evaluate` variable in `LLM_evaluation.py` points to the correct log file. Here, it is also possible to generate your own data for Evaluation following the format of the example output in the simulation section above.
 
 ```Python
 log_file_to_evaluate = "simulation_log_with_recs_customers_and_addresses.json"
@@ -155,4 +155,5 @@ This will call the evaluator LLM and produce a final report named `simulation_lo
     }
 }
 ```
+
 
