@@ -76,29 +76,66 @@ class QRecNLI_API_Wrapper:
         print(f"❌ Failed to connect to backend service. Aborting.")
         exit()
 
+    def get_available_databases(self):
+        """
+        Fetches the list of available databases from the spider dataset.
+        
+        Returns:
+            list: List of available database names, or None if error
+        """
+        try:
+            init_response = requests.get(f"{self.base_url}/initialization/spider")
+            init_response.raise_for_status()
+            return init_response.json()
+        except (requests.exceptions.RequestException, json.JSONDecodeError) as e:
+            print(f"Error getting available databases: {e}")
+            return None
+
     def get_initial_state(self):
         """
             Fetches the initial state for the simulation,
-            including the database schema and cold-start query recommendations.
+            including spider dataset initialization, database schema and cold-start query recommendations.
         """
         print(f"Getting initial state for database '{self.db_id}'...")
         try:
-            requests.get(f"{self.base_url}/initialization/spider")
+            # Initialize spider dataset and get available databases
+            print("🔧 Initializing spider dataset...")
+            init_response = requests.get(f"{self.base_url}/initialization/spider")
+            init_response.raise_for_status()
+            db_lists = init_response.json()
+            logger.info(f"Spider dataset initialized. Available databases: {len(db_lists) if isinstance(db_lists, list) else 'unknown count'}")
+            print(f"✅ Spider dataset initialized with {len(db_lists) if isinstance(db_lists, list) else 'multiple'} databases")
+            
+            # Verify that our target database is available
+            if isinstance(db_lists, list) and self.db_id not in db_lists:
+                logger.warning(f"Target database '{self.db_id}' not found in available databases: {db_lists[:5]}...")
+                print(f"⚠️ Warning: Database '{self.db_id}' not found in available databases")
+            
+            # Get database schema (this also initializes query context automatically)
+            print(f"📋 Fetching schema for database '{self.db_id}'...")
             tables_response = requests.get(f"{self.base_url}/get_tables/{self.db_id}")
             tables_response.raise_for_status()
             db_schema = tables_response.json()
             db_schema = db_schema.get('tables', db_schema)
+            logger.info(f"Schema fetched for {self.db_id} - query context should now be initialized")
+            print(f"✅ Schema fetched (query context automatically initialized)")
             print(f"Retrieved schema: {json.dumps(db_schema, indent=2, ensure_ascii=False)}")
 
             # Set request headers to avoid compression issues, then get SQL recommendations
             headers = {'Accept-Encoding': None, 'User-Agent': 'curl/7.81.0'}
+            print(f"🎯 Fetching initial query recommendations...")
             logger.info(f"Fetching SQL suggestions from backend: {self.base_url}/sql_sugg/{self.db_id}")
             sugg_response = requests.get(f"{self.base_url}/sql_sugg/{self.db_id}", headers=headers)
             sugg_response.raise_for_status()
             text_recommendations = sugg_response.json().get("nl", [])
             logger.info(f"Received {len(text_recommendations)} NL recommendations from backend")
             print(f"Directly fetched NL recommendations: {text_recommendations[:5]}")
-            return {"schema": db_schema, "recommendations": text_recommendations}
+            
+            return {
+                "schema": db_schema, 
+                "recommendations": text_recommendations,
+                "available_databases": db_lists
+            }
         except (requests.exceptions.RequestException, json.JSONDecodeError) as e:
             print(f"Error getting initial state: {e}")
             return None
@@ -404,6 +441,6 @@ if __name__ == "__main__":
     # Run with recommendations mode
     run_simulation(max_turns=5, use_recommendations=True)
 
-    # # For comparison, you can run the no-recommendations mode
-    print("\n\n" + "=" * 80 + "\n\n")
-    run_simulation(max_turns=5, use_recommendations=False)
+    # # # For comparison, you can run the no-recommendations mode
+    # print("\n\n" + "=" * 80 + "\n\n")
+    # run_simulation(max_turns=5, use_recommendations=False)

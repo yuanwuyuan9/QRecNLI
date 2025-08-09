@@ -107,7 +107,7 @@ def sql_sugg(db_id):
     table_cols = current_app.dataService.get_db_cols(db_id)
     sugg = current_app.dataService.sql_suggest(db_id, table_cols)
     
-    LOG.info(f"Generated {len(sugg.get('sql', []))} recommendations for {db_id}")
+    LOG.info(f"Generated {len(sugg.get('sql', []))} SQL and {len(sugg.get('nl', []))} NL recommendations for {db_id}")
     
     return jsonify(sugg)
 
