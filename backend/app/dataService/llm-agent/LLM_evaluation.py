@@ -1,21 +1,11 @@
 import os
 import json
-from openai import OpenAI
-import time
+from llm_client import initialize_llm_client
 
-# --- DEEPSEEK API CONFIGURATION ---
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")  # Replace with your key
-DEEPSEEK_BASE_URL = "https://api.deepseek.com/v1"
-
-if "your_deepseek_api_key" in DEEPSEEK_API_KEY:
-    print("Warning: Please set your DEEPSEEK_API_KEY in the code or via an environment variable.")
-    exit()
-
-try:
-    client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url=DEEPSEEK_BASE_URL)
-except Exception as e:
-    print(f"Error initializing DeepSeek client: {e}")
-    exit()
+# Initialize LLM client (supports multiple providers)
+# Allow provider selection via environment variable or default to auto-selection
+preferred_provider = os.getenv("EVAL_LLM_PROVIDER", "openai")  # e.g., "openai" or "deepseek"
+client, model_name = initialize_llm_client(provider=preferred_provider)
 
 # --- Questionnaire Definition ---
 QUESTIONNAIRE = {
@@ -149,7 +139,7 @@ def evaluate_log_file(log_filename: str):
     print("\n🤖 AI evaluator is analyzing the log and filling out the questionnaire...")
     try:
         response = client.chat.completions.create(
-            model="deepseek-reasoner",
+            model=model_name,
             messages=[{"role": "user", "content": prompt}],
             response_format={"type": "json_object"},
         )
@@ -159,7 +149,7 @@ def evaluate_log_file(log_filename: str):
             raise ValueError("The JSON returned by the LLM is not correctly formatted.")
 
     except Exception as e:
-        print(f"Error calling DeepSeek or parsing the evaluation result: {e}")
+        print(f"Error calling LLM ({model_name}) or parsing the evaluation result: {e}")
         return
 
     output_filename = log_filename.replace('.json', '_EVALUATION.json')

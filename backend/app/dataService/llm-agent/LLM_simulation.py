@@ -2,10 +2,11 @@ import os
 import json
 import requests
 import pandas as pd
-from openai import OpenAI
 from sql_metadata import Parser
 from urllib.parse import quote
 import time
+import logging
+from llm_client import initialize_llm_client
 
 # --- 1. Configuration ---
 BACKEND_HOST = "127.0.0.1"
@@ -13,20 +14,32 @@ BACKEND_PORT = "5012"
 BASE_URL = f"http://{BACKEND_HOST}:{BACKEND_PORT}/api"
 DB_ID = "customers_and_addresses"
 
+
+from dotenv import load_dotenv
+flag = load_dotenv(override=True)
+if not flag:
+    print("Warning: .env file not found. Please ensure it exists in the current directory.")
+    exit()
+
 print(f"✅ Backend service URL: {BASE_URL}")
 
-# Replace with your key
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
-DEEPSEEK_BASE_URL = "https://api.deepseek.com/v1"
+# Configure logging for LLM simulation
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('llm_simulation.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+logger.info("=== LLM Simulation Starting ===")
 
-if "your_deepseek_api_key" in DEEPSEEK_API_KEY:
-    print("Warning: Please set your DEEPSEEK_API_KEY in the code or via environment variables.")
+# Initialize the global client and model for simulation context
+# Allow provider selection via environment variable or default to auto-selection
+preferred_provider = os.getenv("EVAL_LLM_PROVIDER", "openai")  # e.g., "openai" or "deepseek"
+client, model_name = initialize_llm_client(provider=preferred_provider)
 
-try:
-    client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url=DEEPSEEK_BASE_URL)
-except Exception as e:
-    print(f"Error initializing DeepSeek client: {e}")
-    exit()
 
 # --- 2. System Interface Module (API Wrapper) ---
 class QRecNLI_API_Wrapper:
@@ -79,9 +92,11 @@ class QRecNLI_API_Wrapper:
 
             # Set request headers to avoid compression issues, then get SQL recommendations
             headers = {'Accept-Encoding': None, 'User-Agent': 'curl/7.81.0'}
+            logger.info(f"Fetching SQL suggestions from backend: {self.base_url}/sql_sugg/{self.db_id}")
             sugg_response = requests.get(f"{self.base_url}/sql_sugg/{self.db_id}", headers=headers)
             sugg_response.raise_for_status()
             text_recommendations = sugg_response.json().get("nl", [])
+            logger.info(f"Received {len(text_recommendations)} NL recommendations from backend")
             print(f"Directly fetched NL recommendations: {text_recommendations[:5]}")
             return {"schema": db_schema, "recommendations": text_recommendations}
         except (requests.exceptions.RequestException, json.JSONDecodeError) as e:
@@ -103,9 +118,11 @@ class QRecNLI_API_Wrapper:
             print(f"Generated SQL: {sql_query}")
             print("Fetching new context-aware recommendations...")
             headers = {'Accept-Encoding': None, 'User-Agent': 'curl/7.81.0'}
+            logger.info(f"Fetching context-aware SQL suggestions after query execution")
             sugg_response = requests.get(f"{self.base_url}/sql_sugg/{self.db_id}", headers=headers)
             sugg_response.raise_for_status()
             new_text_recs = sugg_response.json().get("nl", [])
+            logger.info(f"Received {len(new_text_recs)} new context-aware NL recommendations")
             print(f"Directly fetched new NL recommendations: {new_text_recs[:5]}")
             return {"sql": sql_query, "data": result.get('data', []), "recommendations": new_text_recs}
         except (requests.exceptions.RequestException, json.JSONDecodeError) as e:
@@ -184,13 +201,13 @@ class LLMAnalystAgent:
         print("\n🤖 LLM is thinking...")
         try:
             response = client.chat.completions.create(
-                model="deepseek-chat",
+                model=model_name,
                 messages=[{"role": "user", "content": prompt_text}],
                 response_format={"type": "json_object"}
             )
             return json.loads(response.choices[0].message.content)
         except Exception as e:
-            print(f"Error calling DeepSeek or parsing its response: {e}")
+            print(f"Error calling LLM ({model_name}) or parsing its response: {e}")
             return None
 
     def decide_first_query(self, db_schema, initial_recommendations):
