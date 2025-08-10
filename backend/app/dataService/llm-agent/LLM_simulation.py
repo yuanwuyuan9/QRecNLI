@@ -18,7 +18,7 @@ DB_ID = "customers_and_addresses"
 from dotenv import load_dotenv
 flag = load_dotenv(override=True)
 if not flag:
-    print("Warning: .env file not found. Please ensure it exists in the current directory.")
+    print("Warning: .env file not found. Please ensure it exists in the `dataService` directory or current working directory.")
     exit()
 
 print(f"✅ Backend service URL: {BASE_URL}")

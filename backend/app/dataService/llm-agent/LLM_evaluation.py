@@ -2,6 +2,13 @@ import os
 import json
 from llm_client import initialize_llm_client
 
+
+from dotenv import load_dotenv
+flag = load_dotenv(override=True)
+if not flag:
+    print("Warning: .env file not found. Please ensure it exists in the `dataService` directory or current working directory.")
+    exit()
+
 # Initialize LLM client (supports multiple providers)
 # Allow provider selection via environment variable or default to auto-selection
 preferred_provider = os.getenv("EVAL_LLM_PROVIDER", "openai")  # e.g., "openai" or "deepseek"
