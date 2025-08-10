@@ -1,3 +1,7 @@
+*.log
+model_cache
+.env
+venv 
 .DS_Store
 .ipynb_checkpoints/
 .lock
