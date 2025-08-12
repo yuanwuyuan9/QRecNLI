@@ -32,12 +32,7 @@ class LLMEnhancer:
 
         # --- LLM model initialization ---
         try:
-            self.model = ChatOpenAI(
-                model="deepseek-chat",
-                api_key=GV.openai_key,
-                base_url="https://api.deepseek.com/v1",
-                temperature=0,
-            )
+            self.model = ChatOpenAI(model_name="gpt-3.5-turbo-1106", temperature=0, openai_api_key = GV.openai_key, model_kwargs={"seed": 42})
             self.logger.info("LLM Enhancer initialized with LLM model.")
         except Exception as e:
             self.logger.error(f"Failed to initialize LLM model. Error: {e}")
@@ -161,4 +156,5 @@ class LLMEnhancer:
             self._save_db_cache()
             self.logger.info("DB-specific cache updated and saved successfully.")
         else:
+
             self.logger.warning("No items were successfully processed in this batch.")
