@@ -2,8 +2,15 @@ import os
 import json
 from llm_client import initialize_llm_client
 
-# Initialize the LLM client (supports multiple providers)
-# Allows selecting a provider via environment variable, or auto-selects by default
+
+from dotenv import load_dotenv
+flag = load_dotenv(override=True)
+if not flag:
+    print("Warning: .env file not found. Please ensure it exists in the `dataService` directory or current working directory.")
+    exit()
+
+# Initialize LLM client (supports multiple providers)
+# Allow provider selection via environment variable or default to auto-selection
 preferred_provider = os.getenv("EVAL_LLM_PROVIDER", "openai")  # e.g., "openai" or "deepseek"
 client, model_name = initialize_llm_client(provider=preferred_provider)
 
@@ -219,4 +226,5 @@ if __name__ == "__main__":
         evaluate_log_file(log_file_to_evaluate)
     else:
         print(
+
             f"Error: Log file '{log_file_to_evaluate}' not found. Please run the simulation script first to generate the log.")
