@@ -316,6 +316,9 @@ def parse_value(toks, start_idx, tables_with_alias, schema, default_tables=None)
     elif "\"" in toks[idx]:  # token is a string value
         val = toks[idx]
         idx += 1
+    elif toks[idx] == 'null': # token is NULL
+        val = None # In Python, SQL NULL is None
+        idx += 1
     else:
         try:
             val = float(toks[idx])
@@ -352,7 +355,15 @@ def parse_condition(toks, start_idx, tables_with_alias, schema, default_tables=N
         op_id = WHERE_OPS.index(toks[idx])
         idx += 1
         val1 = val2 = None
-        if op_id == WHERE_OPS.index('between'):  # between..and... special case: dual values
+        if op_id == WHERE_OPS.index('is'):
+            idx += 1 # Move past 'is'
+            if idx < len_ and toks[idx] == 'not':
+                not_op = True
+                idx += 1 # Move past 'not'
+            # The next token should be the value (e.g., NULL)
+            idx, val1 = parse_value(toks, idx, tables_with_alias, schema, default_tables)
+            val2 = None
+        elif op_id == WHERE_OPS.index('between'):  # between..and... special case: dual values
             idx, val1 = parse_value(toks, idx, tables_with_alias, schema, default_tables)
             assert toks[idx] == 'and'
             idx += 1
