@@ -23,10 +23,12 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 try:
     import globalVariable as GV
+    from llm_enhance import LLMEnhancer
     from utils.processSQL import process_sql, decode_sql, generate_sql
     from utils.processSQL.decode_sql import extract_select_names, extract_agg_opts, extract_groupby_names
 except ImportError:
     import app.dataService.globalVariable as GV
+    from app.dataService.llm_enhance import LLMEnhancer
     from app.dataService.utils.processSQL import process_sql, decode_sql, generate_sql
     from app.dataService.utils.processSQL.decode_sql import extract_select_names, extract_agg_opts, extract_groupby_names
 # TODO: data type checking and loading before recommendation
@@ -68,6 +70,22 @@ class queryRecommender(object):
         # ---- pre-selected
         self.pre_sel = []
 
+        self.llm_enhancer = None
+        self.topic = None
+        self.current_topic = None
+
+    def _get_enhancer(self, topic):
+        """
+        A helper method to make sure we have created the LLMEnhancer instance for the correct topic (db_id).
+        If the topic hasn't changed, reuse the old instance.
+        """
+        logger = logging.getLogger(__name__)
+        if self.llm_enhancer is None or self.current_topic != self.topic:
+            logger.info(f"Initializing LLMEnhancer for topic: {self.topic}")
+            self.current_topic = topic
+            self.llm_enhancer = LLMEnhancer(db_id=self.topic)
+        return self.llm_enhancer
+
     def cal_cosine_sim(self, sen0, sen1):
         """
         - calculate cosine similairty between sen0 and sen1
@@ -75,20 +93,41 @@ class queryRecommender(object):
           - sen0: list of str or single str
           - sen1: list of str or single str
         - OUTPUT:
-          - cosine similarity between sen0 and sen1
+          - use LLM-enriched descriptions obtained via LLMEnhancer.
+          - cosine similarity between enriched_sen0 and enriched_sen1
         """
-        if isinstance(sen0, list):
-            sen0 = ["".join(s.split(":")[1:]) if ":" in s else s for s in sen0]
-        elif isinstance(sen0, str):
-            sen0 = "".join(sen0.split(":")[1:]) if ":" in sen0 else sen0
-        if isinstance(sen1, list):
-            sen1 = ["".join(s.split(":")[1:]) if ":" in s else s for s in sen1]
-        elif isinstance(sen1, str):
-            sen1 = "".join(sen1.split(":")[1:]) if ":" in sen1 else sen1
+        llm_enhancer = self._get_enhancer(self.topic)
 
+        all_items_to_enrich = set()
+        if isinstance(sen0, str):
+            all_items_to_enrich.add(sen0)
+        elif isinstance(sen0, list):
+            all_items_to_enrich.update(sen0)
+
+        if isinstance(sen1, str):
+            all_items_to_enrich.add(sen1)
+        elif isinstance(sen1, list):
+            all_items_to_enrich.update(sen1)
+
+        # 2. Use enrich_batch() to "pre-warm" the cache.
+        # This function will concurrently fetch descriptions for all items
+        if all_items_to_enrich:
+            llm_enhancer.enrich_batch(list(all_items_to_enrich))
+
+        # 3. Now, define the retrieval function. After the batch call above,
+        # all subsequent calls to get_enriched_description will be fast cache hits.
+        def enrich_input_with_llm(sentences):
+            if isinstance(sentences, str):
+                return llm_enhancer.get_enriched_description(sentences)
+            elif isinstance(sentences, list):
+                return [llm_enhancer.get_enriched_description(s) for s in sentences]
+            return sentences
+
+        enriched_sen0 = enrich_input_with_llm(sen0)
+        enriched_sen1 = enrich_input_with_llm(sen1)
         
-        embedd0 = self.model.encode(sen0, convert_to_tensor=True, show_progress_bar=False)
-        embedd1 = self.model.encode(sen1, convert_to_tensor=True, show_progress_bar=False)
+        embedd0 = self.model.encode(enriched_sen0, convert_to_tensor=True, show_progress_bar=False)
+        embedd1 = self.model.encode(enriched_sen1, convert_to_tensor=True, show_progress_bar=False)
         cosine_scores = util.pytorch_cos_sim(embedd0, embedd1).cpu().numpy()
         return cosine_scores
 
@@ -158,6 +197,17 @@ class queryRecommender(object):
         return db_df_bin
 
     def get_grouped_cols(self, columns, min_size = 2, th = 0.75):
+        """
+            Groups a list of columns based on their semantic similarity using LLM-generated descriptions and embedding-based clustering.
+            - INPUT:
+              - columns: A list of column names, typically in 'table_name: column_name' format.
+              - min_size: The minimum number of columns required to form a cluster/group.
+              - th: The similarity threshold (0 to 1) for the community detection algorithm.
+
+            - OUTPUT:
+              - A list of sets, where each set contains the names of semantically related columns.
+        """
+
         # Handle empty or single column case
         if len(columns) < 2:
             col_groups = []
@@ -165,8 +215,17 @@ class queryRecommender(object):
                 col_groups = [set(columns)]
             col_groups += GV.col_combo
             return col_groups
-            
-        corpus_embeddings = self.model.encode(columns, convert_to_tensor=True, show_progress_bar=False)
+
+        # 1. Get the LLM enhancer instance for the current context.
+        llm_enhancer = self._get_enhancer(self.topic)
+
+        # 2. Efficiently pre-warm the cache with all column descriptions in a single batch.
+        llm_enhancer.enrich_batch(columns)
+
+        # 3. Retrieve the enriched descriptions for each column.
+        enriched_columns = [llm_enhancer.get_enriched_description(col) for col in columns]
+
+        corpus_embeddings = self.model.encode(enriched_columns, convert_to_tensor=True, show_progress_bar=False)
         clusters = util.community_detection(corpus_embeddings, min_community_size = min_size, threshold = th)
         col_groups = [set([columns[c] for c in cluster]) for cluster in clusters]
         col_groups += GV.col_combo
