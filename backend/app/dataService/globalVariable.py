@@ -1,6 +1,10 @@
 # Global variables
 # ##############################
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv(override=True)
 
 test = os.getcwd()
 
@@ -45,12 +49,10 @@ SQL2NL_MODEL_FOLDER = os.path.abspath(os.path.join(MODEL_FOLDER, "UnifiedSKG"))
 SQL2NL_MODEL_CONFIG_PATH = os.path.abspath(os.path.join(SQL2NL_MODEL_FOLDER, "configure/Salesforce/T5_base_prefix_sql2text.cfg"))
 
 
-# import your openai key here
-if os.path.exists(os.path.join(_current_dir, 'openaikey')):
-    with open(os.path.join(_current_dir, 'openaikey'), 'r') as f:
-        openai_key = f.read().strip()
-else:
-    raise Exception("Please put your openai key in globalVariable.py")
+# Load OpenAI API key from environment variable
+openai_key = os.getenv('OPENAI_API_KEY')
+if not openai_key:
+    raise Exception("Please set the OPENAI_API_KEY environment variable in your .env file")
 
 ##################
 ### test case for query suggestion

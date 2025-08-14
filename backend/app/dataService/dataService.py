@@ -4,6 +4,7 @@ import time
 import json
 import os
 import warnings
+import logging
 
 import sqlite3
 import pandas as pd
@@ -151,22 +152,28 @@ class DataService(object):
         - Output: 
             - table col names: ["table name: col names", ...]
         """
+        # Always process the database columns for the specific db_id
+        # This fixes the bug where init_query_context() would prevent column processing
+        db_info = self.db_meta_dict[db_id]
+        pk = db_info["primary_keys"] # primary keys
+        fk = db_info["foreign_keys"] # foreign keys
+        k_set = set(pk)
+        for f in fk:
+            for e in f:
+                k_set.add(e)
+        # print("k_set: ", k_set)
+        table_names = db_info["table_names"]
+        # remove columns that included in primary keys and foreign keys since they usually do not carry many meanings
+        table_cols = [table_names[col[0]] + ": " + col[1] for colidx, col in enumerate(db_info["column_names"]) if col[0]!=-1 and colidx not in list(k_set)]
+        
+        self.table_cols = table_cols  # Keep backward compatibility
+        # print(table_cols)
+        
+        # Initialize query context if it doesn't exist (fallback safety)
         if db_id not in self.h_q.keys():
-            db_info = self.db_meta_dict[db_id]
-            pk = db_info["primary_keys"] # primary keys
-            fk = db_info["foreign_keys"] # foreign keys
-            k_set = set(pk)
-            for f in fk:
-                for e in f:
-                    k_set.add(e)
-            # print("k_set: ", k_set)
-            table_names = db_info["table_names"]
-            # remove columns that included in primary keys and foreign keys since they usually do not carry many meanings
-            table_cols = [table_names[col[0]] + ": " + col[1] for colidx, col in enumerate(db_info["column_names"]) if col[0]!=-1 and colidx not in list(k_set)]
-            self.table_cols = table_cols
-            # print(table_cols)
+            self.init_query_context(db_id)
             
-        return self.table_cols
+        return table_cols
 
     def get_col_names(self, file_name, table_name):
         conn = sqlite3.connect(file_name)
@@ -270,8 +277,20 @@ class DataService(object):
         ### Output:
         - suggestion
         """
+        logger = logging.getLogger(__name__)
+        logger.info(f"=== Starting SQL suggestion for database: {db_id} ===")
+        logger.info(f"Input table_cols count: {len(table_cols)}")
+        logger.info(f"Input table_cols: {table_cols[:10]}..." if len(table_cols) > 10 else f"Input table_cols: {table_cols}")
+        logger.info(f"Min support threshold: {min_support}")
+        
         if db_id in self.h_q.keys():
             context_dict = self.h_q[db_id]
+            logger.info(f"Using query history context for {db_id}")
+            logger.info(f"Context - select: {context_dict.get('select', [])}")
+            logger.info(f"Context - groupby: {context_dict.get('groupby', [])}")
+            logger.info(f"Context - agg: {context_dict.get('agg', [])}")
+        else:
+            logger.info(f"No query history found for {db_id}, using default context")
 
         # database meta data
         db_meta = self.db_meta_dict[db_id]
@@ -279,22 +298,44 @@ class DataService(object):
 
         # load sql suggestion model
         self._load_sqlsugg_model()
-        # print("db id, table_cols: ", db_id.replace("_", " ").strip(), table_cols)
-        db_bin = self.sqlsugg_model.search_sim_dbs(db_id.replace("_", " ").strip(), table_cols)
+        
+        # Step 1: Search similar databases
+        topic_name = db_id.replace("_", " ").strip()
+        logger.info(f"Searching similar databases for '{topic_name}'")
+        
+        db_bin = self.sqlsugg_model.search_sim_dbs(topic_name, table_cols)
+        logger.info(f"Found similarity matrix: {db_bin.shape}")
         print(db_bin.head())
+        
+        # Step 2: Generate query suggestions
+        logger.info(f"Generating query suggestions (support: {min_support})")
+        
         sugg_dict = self.sqlsugg_model.query_suggestion(db_bin, context_dict, min_support)
+        logger.info(f"Generated {len(sugg_dict.get('select', []))} query suggestions")
         print("sugg_dict: ", sugg_dict)
         
 
+        # Step 3: Compile SQL prompts
+        logger.info(f"Compiling to natural language prompts")
         nls_prompts = generate_sql.compile_sql(sugg_dict)
-        # print("nls: {}".format(nls))
+        logger.info(f"Generated {len(nls_prompts)} NL prompts")
+        
+        # Step 4: Convert to SQL
+        logger.info(f"Converting to SQL queries")
         sqls = [self.text2sql(nl, db_id) for nl in nls_prompts]
-        sql2nls =  [self.sql2nl(sql) for sql in sqls]      
-        # print("sql2nls: {}, type: {}".format(sql2nls, type(sql2nls[0])))
-        return {
+        
+        # Step 5: Convert SQL back to NL for final recommendations
+        logger.info(f"Converting to final NL recommendations")
+        sql2nls = [self.sql2nl(sql) for sql in sqls]
+        
+        result = {
             "sql": sqls,
             "nl": sql2nls
         }
+        
+        logger.info(f"Completed: {len(result['sql'])} recommendations")
+        
+        return result
 
     def data2vl(self, data):
         """Get VegaLite specifications from tabular-style data.

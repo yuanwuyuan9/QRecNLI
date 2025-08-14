@@ -1,5 +1,6 @@
 
 .venv
+*.log
 model_cache
 venv
 .DS_Store

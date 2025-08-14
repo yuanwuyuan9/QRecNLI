@@ -5,10 +5,19 @@ import json
 import numpy as np
 import pandas as pd
 import math
+import logging
 
 from sentence_transformers import SentenceTransformer, util
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+# Disable transformers logging to reduce noise
+import transformers
+transformers.logging.set_verbosity_error()
+
+# Disable sentence transformers progress bars
+import warnings
+warnings.filterwarnings("ignore")
 from mlxtend.frequent_patterns import fpmax, fpgrowth
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -30,6 +39,8 @@ class queryRecommender(object):
         self.GV = GV
         # self.model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
         self.model = SentenceTransformer('all-MiniLM-L6-v2', cache_folder=os.path.join(os.path.dirname(__file__), 'model_cache'))
+        # Disable progress bars for encoding operations
+        self.model._modules['0'].auto_model.config.output_hidden_states = False
         # self.model = SentenceTransformer('paraphrase-MiniLM-L12-v2')
 
         self.db_schema, self.db_names, self.tables = process_sql.get_schemas_from_json(
@@ -74,8 +85,10 @@ class queryRecommender(object):
             sen1 = ["".join(s.split(":")[1:]) if ":" in s else s for s in sen1]
         elif isinstance(sen1, str):
             sen1 = "".join(sen1.split(":")[1:]) if ":" in sen1 else sen1
-        embedd0 = self.model.encode(sen0, convert_to_tensor=True)
-        embedd1 = self.model.encode(sen1, convert_to_tensor=True)
+
+        
+        embedd0 = self.model.encode(sen0, convert_to_tensor=True, show_progress_bar=False)
+        embedd1 = self.model.encode(sen1, convert_to_tensor=True, show_progress_bar=False)
         cosine_scores = util.pytorch_cos_sim(embedd0, embedd1).cpu().numpy()
         return cosine_scores
 
@@ -89,42 +102,71 @@ class queryRecommender(object):
         - OUTPUT:
           - dataframe of similar dbs in the dataset
         """
+        logger = logging.getLogger(__name__)
+        logger.info(f"Searching similar DBs for '{topic}' ({len(search_cols)} cols)")
         ############## cluster input columns based on their semantic meanings
         cols_groups = self.get_grouped_cols(search_cols)
         self.g_cols_cache = cols_groups
+        logger.info(f"Created {len(cols_groups)} column groups")
         #################################################
 
         if topic in self.db_cache.keys():
+            logger.info(f"Using cached results for '{topic}'")
             return self.db_cache[topic]
 
         self.search_cols = search_cols
         sim_scores = self.cal_cosine_sim(topic, self.db_new_names)[0]
         related_db_names = [self.db_names[i] for i in np.where(sim_scores > self.topic_sim_th)[0]]
+        logger.info(f"Found {len(related_db_names)} related databases")
         print(f"related_db_names: {related_db_names}")
         row_sims = []
         rowids = []
+        processed_count = 0
         for rowid, row in self.dataset.iterrows():
             if row["db_id"] in related_db_names:
                 rowids.append(rowid)
+                processed_count += 1
                 # entity in `select` clause
-                # print(row["sql"])
                 select_decoded = decode_sql(row["sql"], self.tables[row["db_id"]])["select"]
                 select_ents = extract_select_names(select_decoded)
                 # calculate similarity between `select` items and `select` cols
-                row_sim = self.cal_cosine_sim(self.search_cols, select_ents)
+                # Handle case when search_cols is empty to avoid tensor multiplication error
+                if len(self.search_cols) == 0 or len(select_ents) == 0:
+                    row_sim = np.zeros((len(self.search_cols) if self.search_cols else 1, len(select_ents) if select_ents else 1))
+                else:
+                    row_sim = self.cal_cosine_sim(self.search_cols, select_ents)
                 row_sims.append(np.max(row_sim, axis=1))
+        logger.info(f"Processed {processed_count} database rows")
+        # Handle case when search_cols is empty
+        if len(self.search_cols) == 0:
+            logger.warning("No search columns, returning empty DataFrame")
+            print("Warning: search_cols is empty, returning empty DataFrame")
+            return pd.DataFrame()
+        
         db_df_bin = pd.DataFrame(np.where(np.array(row_sims) > self.item_sim, 1, 0),
                                  columns=self.search_cols)
+        logger.info(f"Created binary matrix: {db_df_bin.shape}")
+        
         self.ref_db = (self.dataset.loc[rowids]).reset_index(drop=True)
+        
         sim_sum = [sum(db_df_bin[col]) for col in db_df_bin.columns]
         db_df_bin = db_df_bin[db_df_bin.columns[(-np.array(sim_sum)).argsort()]]
         ######################################################################
         
         self.db_cache[topic] = db_df_bin
+        logger.info(f"Cached results for '{topic}'")
         return db_df_bin
 
     def get_grouped_cols(self, columns, min_size = 2, th = 0.75):
-        corpus_embeddings = self.model.encode(columns, convert_to_tensor=True)
+        # Handle empty or single column case
+        if len(columns) < 2:
+            col_groups = []
+            if columns:
+                col_groups = [set(columns)]
+            col_groups += GV.col_combo
+            return col_groups
+            
+        corpus_embeddings = self.model.encode(columns, convert_to_tensor=True, show_progress_bar=False)
         clusters = util.community_detection(corpus_embeddings, min_community_size = min_size, threshold = th)
         col_groups = [set([columns[c] for c in cluster]) for cluster in clusters]
         col_groups += GV.col_combo
@@ -329,19 +371,22 @@ class queryRecommender(object):
         consider decreasing the rank of unselected recommended items
         4. ranking considering `groupby` and `opt` items
         """
+        logger = logging.getLogger(__name__)
+        logger.info(f"Query suggestion: matrix {db_df_bin.shape}, support {min_support}")
         support = self.item_sim if min_support is None else min_support
+        
         # `select`, `agg`, `groupby`
         sel_contexts = context_dict["select"]
         agg_contexts = context_dict["agg"]
         groupby_contexts = context_dict["groupby"]
+        
         # STEP ONE: initial recommendation
         if len(sel_contexts) == 0:
+            logger.info("Cold start: generating initial recommendations")
             freq_combo = self.get_freq_combo(db_df_bin, set([]), support, max_len = max_len)
             union_set = frozenset().union(*freq_combo["itemsets"].values)
             next_cols = [list(v) for v in freq_combo["itemsets"].values]
-            # print("freq_combo: ", freq_combo)
-            # print("db_df_bin.columns: ", db_df_bin.columns)
-            # print("next cols: ", next_cols, db_df_bin.columns.difference([]))
+            logger.info(f"Found {len(freq_combo)} frequent combinations")
             
             if len(union_set) < top_n:
                 rest_cols = db_df_bin.columns.difference(list(union_set))

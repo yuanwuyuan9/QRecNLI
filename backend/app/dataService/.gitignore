@@ -1,2 +1,5 @@
+.env
 openaikey.key
 openaikey
+*.log
+llm-agent/*.json

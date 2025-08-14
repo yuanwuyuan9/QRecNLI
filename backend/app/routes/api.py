@@ -102,9 +102,13 @@ def sql2text(sql_text, db_id="cinema"):
 
 @api.route("/sql_sugg/<db_id>", methods=['GET'])
 def sql_sugg(db_id):
+    LOG.info(f"SQL suggestion requested for {db_id}")
+    
     table_cols = current_app.dataService.get_db_cols(db_id)
     sugg = current_app.dataService.sql_suggest(db_id, table_cols)
-    # print(f"sugg: {sugg}")
+    
+    LOG.info(f"Generated {len(sugg.get('sql', []))} SQL and {len(sugg.get('nl', []))} NL recommendations for {db_id}")
+    
     return jsonify(sugg)
 
 
