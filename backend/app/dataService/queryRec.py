@@ -80,10 +80,11 @@ class queryRecommender(object):
         If the topic hasn't changed, reuse the old instance.
         """
         logger = logging.getLogger(__name__)
-        if self.llm_enhancer is None or self.current_topic != self.topic:
-            logger.info(f"Initializing LLMEnhancer for topic: {self.topic}")
+        if self.llm_enhancer is None or self.current_topic != topic:
+            logger.info(f"Initializing LLMEnhancer for topic: {topic}")
             self.current_topic = topic
-            self.llm_enhancer = LLMEnhancer(db_id=self.topic)
+            self.topic = topic
+            self.llm_enhancer = LLMEnhancer(db_id=topic)
         return self.llm_enhancer
 
     def cal_cosine_sim(self, sen0, sen1):
@@ -143,6 +144,10 @@ class queryRecommender(object):
         """
         logger = logging.getLogger(__name__)
         logger.info(f"Searching similar DBs for '{topic}' ({len(search_cols)} cols)")
+        
+        # Set the topic for this session
+        self.topic = topic
+        
         ############## cluster input columns based on their semantic meanings
         cols_groups = self.get_grouped_cols(search_cols)
         self.g_cols_cache = cols_groups
