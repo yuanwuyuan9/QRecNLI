@@ -51,6 +51,7 @@ def clean_sql(sql: str) -> str:
 
     # 1. Remove optional markdown code fences and trim leading/trailing whitespace.
     cleaned_sql = re.sub(r'^```sql\s*|\s*```$', '', sql, flags=re.IGNORECASE).strip()
+    cleaned_sql = re.sub(r'^sqlquery:\s*', '', cleaned_sql, flags=re.IGNORECASE).strip()
 
     # 2. Remove all double quotes, often used for identifiers but can be inconsistent.
     cleaned_sql = cleaned_sql.replace('"', '')
@@ -94,7 +95,7 @@ if __name__ == '__main__':
 
     # Define a more complex query to showcase multiple features of the cleaner.
     complex_sql_example = """
-    ```sql
+    ```sqlquery:
     select
         user_id,
         COUNT(order_id) as order_count,
