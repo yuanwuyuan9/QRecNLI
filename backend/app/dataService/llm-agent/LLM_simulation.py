@@ -42,7 +42,7 @@ client, model_name = initialize_llm_client(provider=preferred_provider)
 
 
 # --- 2. System Interface Module (API Wrapper) ---
-class QRecNLI_API_Wrapper:
+class QRecNLI_LUX_API_Wrapper:
     """
        A wrapper class to handle all API communications with the backend service(QRec-NLI).
        It encapsulates methods for fetching database schema, recommendations, and executing queries.
@@ -348,7 +348,7 @@ def run_simulation(max_turns=6, use_recommendations=True):
     print(f"      Mode: {mode_str}")
     print("======================================================")
 
-    api = QRecNLI_API_Wrapper(BASE_URL, DB_ID)
+    api = QRecNLI_LUX_API_Wrapper(BASE_URL, DB_ID)
     agent_persona = "You are a professional data analyst skilled in exploratory analysis with incomplete information. You can only interact with the system through natural language, including viewing recommended exploration questions."
     agent_goal = f"Analyze the '{DB_ID}' database to understand basic customer information."
     agent = LLMAnalystAgent(persona=agent_persona, goal=agent_goal)
@@ -444,3 +444,4 @@ if __name__ == "__main__":
     # # # For comparison, you can run the no-recommendations mode
     # print("\n\n" + "=" * 80 + "\n\n")
     # run_simulation(max_turns=5, use_recommendations=False)
+
