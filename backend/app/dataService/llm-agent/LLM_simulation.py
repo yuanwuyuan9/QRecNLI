@@ -143,7 +143,7 @@ class QRecNLI_LUX_API_Wrapper:
     def execute_query_and_get_next_state(self, query_text: str):
         """
             Sends a natural language query to the backend, gets the resulting SQL and data,
-            and then fetches new context-aware recommendations for the next turn.
+            and then fetches new interesting recommendations for the next turn.
         """
         try:
             print(f"Executing query: '{query_text}'...")
@@ -153,13 +153,13 @@ class QRecNLI_LUX_API_Wrapper:
             result = response.json()
             sql_query = result.get('sql', '')
             print(f"Generated SQL: {sql_query}")
-            print("Fetching new context-aware recommendations...")
+            print("Fetching new interesting recommendations...")
             headers = {'Accept-Encoding': None, 'User-Agent': 'curl/7.81.0'}
-            logger.info(f"Fetching context-aware SQL suggestions after query execution")
+            logger.info(f"Fetching interesting SQL suggestions after query execution")
             sugg_response = requests.get(f"{self.base_url}/sql_sugg/{self.db_id}", headers=headers)
             sugg_response.raise_for_status()
             new_text_recs = sugg_response.json().get("nl", [])
-            logger.info(f"Received {len(new_text_recs)} new context-aware NL recommendations")
+            logger.info(f"Received {len(new_text_recs)} new interesting NL recommendations")
             print(f"Directly fetched new NL recommendations: {new_text_recs[:5]}")
             return {"sql": sql_query, "data": result.get('data', []), "recommendations": new_text_recs}
         except (requests.exceptions.RequestException, json.JSONDecodeError) as e:
@@ -444,4 +444,5 @@ if __name__ == "__main__":
     # # # For comparison, you can run the no-recommendations mode
     # print("\n\n" + "=" * 80 + "\n\n")
     # run_simulation(max_turns=5, use_recommendations=False)
+
 
