@@ -95,7 +95,7 @@ class CoverageEvaluator:
         """
         if not sql: return {'tables': set(), 'columns': set(), 'aggregations': set(), 'clauses': set()}
         try:
-            AGG_OPS, CLAUSE_KEYWORDS = ['COUNT', 'SUM', 'AVG', 'MAX', 'MIN'], {'GROUP BY', 'ORDER BY', 'LIMIT', 'INTERSECT', 'UNION', 'EXCEPT', 'JOIN'}
+            AGG_OPS, CLAUSE_KEYWORDS = ['COUNT', 'SUM', 'AVG', 'MAX', 'MIN'], {'GROUP BY', 'ORDER BY', 'LIMIT', 'INTERSECT', 'UNION', 'EXCEPT', 'JOIN', 'WHERE'}
             aggs, clauses = set(), set()
             for op in AGG_OPS:
                 if re.search(r'\b' + op + r'\s*\(', sql, re.IGNORECASE): aggs.add(op)
@@ -131,7 +131,7 @@ class CoverageEvaluator:
         table_coverage = len(recommended_tables) / len(total_tables) if total_tables else 0
         column_coverage = len(recommended_columns) / len(total_columns) if total_columns else 0
 
-        AGG_FUNCTIONS, CLAUSES = {'COUNT', 'SUM', 'AVG', 'MAX', 'MIN'}, {'GROUP BY', 'ORDER BY', 'JOIN'}
+        AGG_FUNCTIONS, CLAUSES = {'COUNT', 'SUM', 'AVG', 'MAX', 'MIN'}, {'GROUP BY', 'ORDER BY', 'LIMIT', 'INTERSECT', 'UNION', 'EXCEPT', 'JOIN', 'WHERE'}
         agg_coverage = len(recommended_aggs.intersection(AGG_FUNCTIONS)) / len(AGG_FUNCTIONS) if AGG_FUNCTIONS else 0
         clause_coverage = len(recommended_clauses.intersection(CLAUSES)) / len(CLAUSES) if CLAUSES else 0
 
